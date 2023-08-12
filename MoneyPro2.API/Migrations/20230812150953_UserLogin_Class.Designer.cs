@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoneyPro2.API.Data;
 
@@ -11,9 +12,11 @@ using MoneyPro2.API.Data;
 namespace MoneyPro2.API.Migrations
 {
     [DbContext(typeof(MoneyPro2DataContext))]
-    partial class MoneyPro2DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230812150953_UserLogin_Class")]
+    partial class UserLogin_Class
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

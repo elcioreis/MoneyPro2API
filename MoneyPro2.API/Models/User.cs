@@ -63,6 +63,7 @@ public partial class User : Notifiable<Notification>
     public string Senha { get; private set; } = string.Empty;
     [JsonIgnore]
     public string Criptografada { get; set; } = string.Empty;
+    public ICollection<UserLogin> UserLogins { get; private set; } = new List<UserLogin>();
 
     [GeneratedRegex("^([a-z0-9@.]){1,20}$")]
     private static partial Regex AllowedChars();
