@@ -2,8 +2,8 @@
 
 public class UserLogin
 {
-    public int Id { get; private set; }
-    public int UserId { get; private set; }
-    public DateTime LoginTime { get; private set; }
-    public User Users { get; private set; } = null!;
+    public int Id { get; set; }
+    public int UserId { get; set; }
+    public DateTime LoginTime { get; set; }
+    public User Users { get; set; } = null!;
 }

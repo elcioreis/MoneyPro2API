@@ -17,8 +17,8 @@ namespace MoneyPro2.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    LoginTime = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UserId = table.Column<int>(type: "INT", nullable: false),
+                    LoginTime = table.Column<DateTime>(type: "DATETIME", nullable: false, defaultValueSql: "GETUTCDATE()")
                 },
                 constraints: table =>
                 {
@@ -34,7 +34,8 @@ namespace MoneyPro2.API.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_UserLogin_UserId",
                 table: "UserLogin",
-                column: "UserId");
+                columns: new[] { "UserId", "LoginTime" })
+                .Annotation("SqlServer:Clustered", false);
         }
 
         /// <inheritdoc />

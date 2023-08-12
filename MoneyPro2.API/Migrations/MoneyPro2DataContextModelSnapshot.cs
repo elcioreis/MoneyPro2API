@@ -68,16 +68,22 @@ namespace MoneyPro2.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("LoginTime")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("DATETIME")
+                        .HasColumnName("LoginTime")
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INT")
+                        .HasColumnName("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex(new[] { "UserId", "LoginTime" }, "IX_UserLogin_UserId");
 
-                    b.ToTable("UserLogin");
+                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "UserId", "LoginTime" }, "IX_UserLogin_UserId"), false);
+
+                    b.ToTable("UserLogin", (string)null);
                 });
 
             modelBuilder.Entity("MoneyPro2.API.Models.User", b =>

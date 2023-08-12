@@ -12,7 +12,7 @@ using MoneyPro2.API.Data;
 namespace MoneyPro2.API.Migrations
 {
     [DbContext(typeof(MoneyPro2DataContext))]
-    [Migration("20230812150953_UserLogin_Class")]
+    [Migration("20230812210042_UserLogin_Class")]
     partial class UserLogin_Class
     {
         /// <inheritdoc />
@@ -71,16 +71,22 @@ namespace MoneyPro2.API.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("LoginTime")
-                        .HasColumnType("datetime2");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("DATETIME")
+                        .HasColumnName("LoginTime")
+                        .HasDefaultValueSql("GETUTCDATE()");
 
                     b.Property<int>("UserId")
-                        .HasColumnType("int");
+                        .HasColumnType("INT")
+                        .HasColumnName("UserId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex(new[] { "UserId", "LoginTime" }, "IX_UserLogin_UserId");
 
-                    b.ToTable("UserLogin");
+                    SqlServerIndexBuilderExtensions.IsClustered(b.HasIndex(new[] { "UserId", "LoginTime" }, "IX_UserLogin_UserId"), false);
+
+                    b.ToTable("UserLogin", (string)null);
                 });
 
             modelBuilder.Entity("MoneyPro2.API.Models.User", b =>

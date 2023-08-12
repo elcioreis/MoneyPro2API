@@ -74,27 +74,5 @@ public class UserMap : IEntityTypeConfiguration<User>
             .IsClustered(false)
             .HasDatabaseName("IX_User_CPF")
             .IsUnique();
-
-        // Relacionamentos
-        //builder
-        //    .HasMany(x => x.Logins)
-        //    .WithOne(x => x.Users)
-        //    .UsingEntity<Dictionary<string, object>>(
-        //        "UserLogin",
-        //        login =>
-        //            login
-        //                .HasOne<UserLogin>()
-        //                .WithMany()
-        //                .HasForeignKey("LoginId")
-        //                .HasConstraintName("FK_UserLogin_User")
-        //                .OnDelete(DeleteBehavior.Cascade),
-        //        user =>
-        //            user.HasOne<User>()
-        //                .WithMany()
-        //                .HasForeignKey("UserId")
-        //                .IsRequired()
-        //                .HasConstraintName("FK_UserLogin_UserId")
-        //                .OnDelete(DeleteBehavior.Cascade)
-        //    );
     }
 }

@@ -13,6 +13,7 @@ public class MoneyPro2DataContext : DbContext
     public MoneyPro2DataContext(DbContextOptions<MoneyPro2DataContext> options) : base(options) { }
 
     public DbSet<User> Users { get; set; } = null!;
+    public DbSet<UserLogin> UserLogins { get; set; } = null!;
 
     //protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(
     //        "Server=localhost;Database=MoneyPro2_Devel;Integrated Security=True;Trust Server Certificate=true"
@@ -35,5 +36,6 @@ public class MoneyPro2DataContext : DbContext
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.ApplyConfiguration(new UserMap());
+        modelBuilder.ApplyConfiguration(new UserLoginMap());
     }
 }
