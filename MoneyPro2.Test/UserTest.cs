@@ -1,5 +1,4 @@
 using MoneyPro2.API.Models;
-using MoneyPro2.API.ValueObjects;
 
 namespace MoneyPro2.Test;
 
@@ -8,9 +7,9 @@ public class UserTest
 {
     // public User(string username, string nome, Email email, CPF cpf, string senha)
     private readonly string _username = "jose";
-    private readonly string _nome = "Jose Silva";
-    private readonly Email _email = new("jose.silva@gmail.com");
-    private readonly CPF _cpf = new("509.254.178-40");
+    private readonly string _nome = "José da Silva";
+    private readonly string _email = "jose.silva@gmail.com";
+    private readonly string _cpf = "509.254.178-40";
     private readonly string _senha = "ABCabc123!@#";
 
     [TestMethod]
@@ -40,7 +39,7 @@ public class UserTest
     [TestMethod]
     public void Usuario_Com_Email_Invalido_Deve_Falhar()
     {
-        var badEmail = new Email("josesilvaATgmail.com");
+        var badEmail = "josesilvaATgmail.com";
         var user = new User(_username, _nome, badEmail, _cpf, _senha);
         Assert.IsFalse(user.IsValid);
     }
@@ -48,7 +47,7 @@ public class UserTest
     [TestMethod]
     public void Usuario_Com_CPF_Invalido_Deve_Falhar()
     {
-        var badCPF = new CPF("509.254.178-99");
+        var badCPF = "509.254.178-99";
         var user = new User(_username, _nome, _email, badCPF, _senha);
         Assert.IsFalse(user.IsValid);
     }
