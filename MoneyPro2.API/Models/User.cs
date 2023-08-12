@@ -12,13 +12,15 @@ public partial class User : Notifiable<Notification>
     private readonly Regex _allowedChars = AllowedChars();
     private readonly Regex _strongPassword = StrongPassword();
 
-    public User(string username, string nome, Email email, CPF cpf, string senha)
+    public User() { }
+
+    public User(string username, string nome, string email, string cpf, string senha)
     {
-        Id = 0;
+        UserId = 0;
         Username = username.Trim().ToLower();
         Nome = nome;
-        Email = email;
-        CPF = cpf;
+        Email = new Email(email);
+        CPF = new CPF(cpf);
         Senha = senha;
         Criptografada = Tools.GenerateMD5(Username, Senha);
 
@@ -51,15 +53,14 @@ public partial class User : Notifiable<Notification>
         AddNotifications(CPF.Notifications);
     }
 
-    public int Id { get; private set; }
+    public int UserId { get; private set; }
     public string Username { get; private set; } = string.Empty;
     public string Nome { get; private set; } = string.Empty;
-    public Email Email { get; private set; }
-    public CPF CPF { get; private set; }
-
+    public Email Email { get; private set; } = null!;
+    public bool EmailVerificado { get; private set; } = false;
+    public CPF CPF { get; private set; } = null!;
     [JsonIgnore]
     public string Senha { get; private set; } = string.Empty;
-
     [JsonIgnore]
     public string Criptografada { get; set; } = string.Empty;
 
