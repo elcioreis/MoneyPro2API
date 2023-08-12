@@ -5,7 +5,6 @@ namespace MoneyPro2.Test;
 [TestClass]
 public class UserTest
 {
-    // public User(string username, string nome, Email email, CPF cpf, string senha)
     private readonly string _username = "jose";
     private readonly string _nome = "José da Silva";
     private readonly string _email = "jose.silva@gmail.com";
@@ -40,6 +39,14 @@ public class UserTest
     public void Usuario_Com_Email_Invalido_Deve_Falhar()
     {
         var badEmail = "josesilvaATgmail.com";
+        var user = new User(_username, _nome, badEmail, _cpf, _senha);
+        Assert.IsFalse(user.IsValid);
+    }
+
+    [TestMethod]
+    public void Usuario_Com_Email_Longo_Deve_Falhar()
+    {
+        var badEmail = _email + "." + new string('m', 200);
         var user = new User(_username, _nome, badEmail, _cpf, _senha);
         Assert.IsFalse(user.IsValid);
     }

@@ -25,4 +25,8 @@
     <ProjectReference Include="..\MoneyPro2.Shared\MoneyPro2.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestFiles\" />
+  </ItemGroup>
+
 </Project>

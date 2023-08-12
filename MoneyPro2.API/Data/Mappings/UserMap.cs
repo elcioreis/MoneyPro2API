@@ -67,5 +67,12 @@ public class UserMap : IEntityTypeConfiguration<User>
             .IsClustered(false)
             .HasDatabaseName("IX_User_Email")
             .IsUnique();
+
+        builder
+            .OwnsOne(p => p.CPF)
+            .HasIndex(i => i.Conteudo)
+            .IsClustered(false)
+            .HasDatabaseName("IX_User_CPF")
+            .IsUnique();
     }
 }

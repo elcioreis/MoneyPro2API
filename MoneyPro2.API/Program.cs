@@ -1,4 +1,8 @@
+using Microsoft.EntityFrameworkCore;
+using MoneyPro2.API.Data;
+
 var builder = WebApplication.CreateBuilder(args);
+ConfigureServices(builder);
 
 // Add services to the container.
 
@@ -23,3 +27,12 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+void ConfigureServices(WebApplicationBuilder builder)
+{
+    var connectionString = builder.Configuration.GetConnectionString("MoneyPro2");
+    builder.Services.AddDbContext<MoneyPro2DataContext>(options =>
+    {
+        options.UseSqlServer(connectionString);
+    });
+}
