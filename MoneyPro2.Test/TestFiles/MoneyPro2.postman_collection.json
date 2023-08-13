@@ -35,6 +35,35 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "v1/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jose\",\r\n    \"senha\": \"ABCabc123!@#\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7278/v1/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

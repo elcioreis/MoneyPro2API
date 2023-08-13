@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MoneyPro2.API.Data;
 
@@ -11,9 +12,11 @@ using MoneyPro2.API.Data;
 namespace MoneyPro2.API.Migrations
 {
     [DbContext(typeof(MoneyPro2DataContext))]
-    partial class MoneyPro2DataContextModelSnapshot : ModelSnapshot
+    [Migration("20230812210042_UserLogin_Class")]
+    partial class UserLogin_Class
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -88,7 +91,7 @@ namespace MoneyPro2.API.Migrations
 
             modelBuilder.Entity("MoneyPro2.API.Models.User", b =>
                 {
-                    b.OwnsOne("MoneyPro2.API.Models.User.CPF#MoneyPro2.API.ValueObjects.CPF", "CPF", b1 =>
+                    b.OwnsOne("MoneyPro2.API.ValueObjects.CPF", "CPF", b1 =>
                         {
                             b1.Property<int>("UserId")
                                 .HasColumnType("int");
@@ -107,13 +110,13 @@ namespace MoneyPro2.API.Migrations
 
                             SqlServerIndexBuilderExtensions.IsClustered(b1.HasIndex("Conteudo"), false);
 
-                            b1.ToTable("User", (string)null);
+                            b1.ToTable("User");
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
                         });
 
-                    b.OwnsOne("MoneyPro2.API.Models.User.Email#MoneyPro2.API.ValueObjects.Email", "Email", b1 =>
+                    b.OwnsOne("MoneyPro2.API.ValueObjects.Email", "Email", b1 =>
                         {
                             b1.Property<int>("UserId")
                                 .HasColumnType("int");
@@ -132,7 +135,7 @@ namespace MoneyPro2.API.Migrations
 
                             SqlServerIndexBuilderExtensions.IsClustered(b1.HasIndex("Address"), false);
 
-                            b1.ToTable("User", (string)null);
+                            b1.ToTable("User");
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
