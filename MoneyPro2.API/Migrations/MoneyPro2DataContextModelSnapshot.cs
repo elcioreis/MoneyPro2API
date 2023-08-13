@@ -88,7 +88,7 @@ namespace MoneyPro2.API.Migrations
 
             modelBuilder.Entity("MoneyPro2.API.Models.User", b =>
                 {
-                    b.OwnsOne("MoneyPro2.API.ValueObjects.CPF", "CPF", b1 =>
+                    b.OwnsOne("MoneyPro2.API.Models.User.CPF#MoneyPro2.API.ValueObjects.CPF", "CPF", b1 =>
                         {
                             b1.Property<int>("UserId")
                                 .HasColumnType("int");
@@ -107,13 +107,13 @@ namespace MoneyPro2.API.Migrations
 
                             SqlServerIndexBuilderExtensions.IsClustered(b1.HasIndex("Conteudo"), false);
 
-                            b1.ToTable("User");
+                            b1.ToTable("User", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
                         });
 
-                    b.OwnsOne("MoneyPro2.API.ValueObjects.Email", "Email", b1 =>
+                    b.OwnsOne("MoneyPro2.API.Models.User.Email#MoneyPro2.API.ValueObjects.Email", "Email", b1 =>
                         {
                             b1.Property<int>("UserId")
                                 .HasColumnType("int");
@@ -132,7 +132,7 @@ namespace MoneyPro2.API.Migrations
 
                             SqlServerIndexBuilderExtensions.IsClustered(b1.HasIndex("Address"), false);
 
-                            b1.ToTable("User");
+                            b1.ToTable("User", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("UserId");
