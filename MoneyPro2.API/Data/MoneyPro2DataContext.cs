@@ -14,6 +14,7 @@ public class MoneyPro2DataContext : DbContext
 
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<UserLogin> UserLogins { get; set; } = null!;
+    public DbSet<InstitutionType> InstitutionTypes { get; set; } = null!;
 
     //protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(
     //        "Server=localhost;Database=MoneyPro2_Devel;Integrated Security=True;Trust Server Certificate=true"
@@ -27,15 +28,27 @@ public class MoneyPro2DataContext : DbContext
         modelBuilder.Ignore<CPF>();
 
         // Chaves estrangeiras
+
+        // UserLogin - User
         modelBuilder
             .Entity<User>()
             .HasMany(e => e.UserLogins)
-            .WithOne(e => e.Users)
+            .WithOne(e => e.User)
+            .HasForeignKey(e => e.UserId)
+            .IsRequired(false)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // TipoInstituicao - User
+        modelBuilder
+            .Entity<User>()
+            .HasMany(e => e.InstitutionTypes)
+            .WithOne(e => e.User)
             .HasForeignKey(e => e.UserId)
             .IsRequired(false)
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.ApplyConfiguration(new UserMap());
         modelBuilder.ApplyConfiguration(new UserLoginMap());
+        modelBuilder.ApplyConfiguration(new InstitutionTypeMap());
     }
 }

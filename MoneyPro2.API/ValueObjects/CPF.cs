@@ -9,7 +9,9 @@ public class CPF : ValueObject
 {
     public CPF(string conteudo)
     {
-        Conteudo = conteudo.Trim().Replace(".", "").Replace("-", "");
+        if (!string.IsNullOrEmpty(conteudo))
+            Conteudo = conteudo.Trim().Replace(".", "").Replace("-", "");
+
         AddNotifications(
             new Contract<Notification>()
                 .Requires()

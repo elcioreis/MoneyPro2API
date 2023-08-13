@@ -8,7 +8,8 @@ public class Email : ValueObject
 {
     public Email(string address)
     {
-        Address = address.Trim().ToLower();
+        if (!string.IsNullOrEmpty(address))
+            Address = address.Trim().ToLower();
 
         AddNotifications(
             new Contract<Notification>()
