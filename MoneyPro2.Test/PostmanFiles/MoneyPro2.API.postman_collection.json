@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "e9637132-1dd1-493e-a827-93e8ad8d2a79",
+		"name": "MoneyPro2.API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15533135",
+		"_collection_link": "https://warped-crater-338486.postman.co/workspace/Team-Workspace~378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-e9637132-1dd1-493e-a827-93e8ad8d2a79?action=share&creator=15533135&source=collection_link"
+	},
+	"item": [
+		{
+			"name": "v1/login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jose\",\r\n    \"senha\": \"ABCabc123!@#\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7278/v1/login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/users",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"jose\",\r\n    \"email\":\"jose.silva@gmail.com\",\r\n    \"nome\": \"José da Silva\",\r\n    \"cpf\":\"509.254.178-40\",\r\n    \"senha\": \"ABCabc123!@#\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7278/v1/users",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/institutiontype",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "https://localhost:7278/v1/institutiontype",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"institutiontype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/institutiontype/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7278/v1/institutiontype/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"institutiontype",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/institutiontype",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"apelido\":\"Bancos\",\r\n    \"descricao\":\"Insituições bancárias\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7278/v1/institutiontype",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"institutiontype"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/institutiontype/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"apelido\":\"Bancos\",\r\n    \"descricao\":\"Instituições bancárias\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:7278/v1/institutiontype/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"institutiontype",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "v1/institutiontype/{id}",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7278/v1/institutiontype/3",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"institutiontype",
+						"3"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

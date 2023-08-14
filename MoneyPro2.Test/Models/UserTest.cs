@@ -1,6 +1,6 @@
 using MoneyPro2.API.Models;
 
-namespace MoneyPro2.Test;
+namespace MoneyPro2.Test.Models;
 
 [TestClass]
 public class UserTest
@@ -10,7 +10,14 @@ public class UserTest
     private readonly string _email = "jose.silva@gmail.com";
     private readonly string _cpf = "509.254.178-40";
     private readonly string _senha = "ABCabc123!@#";
-
+    [TestMethod]
+    public void Usuario_Com_Username_Nulo_Deve_Falhar()
+    {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        var user = new User(null, _nome, _email, _cpf, _senha);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        Assert.IsFalse(user.IsValid);
+    }
     [TestMethod]
     public void Usuario_Com_Username_Invalido_Deve_Falhar()
     {
@@ -18,7 +25,14 @@ public class UserTest
         var user = new User(badUsername, _nome, _email, _cpf, _senha);
         Assert.IsFalse(user.IsValid);
     }
-
+    [TestMethod]
+    public void Usuario_Com_Nome_Nulo_Deve_Falhar()
+    {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        var user = new User(_username, null, _email, _cpf, _senha);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        Assert.IsFalse(user.IsValid);
+    }
     [TestMethod]
     public void Usuario_Com_Nome_Curto_Deve_Falhar()
     {
@@ -32,6 +46,15 @@ public class UserTest
     {
         var badName = new string('n', 75);
         var user = new User(_username, badName, _email, _cpf, _senha);
+        Assert.IsFalse(user.IsValid);
+    }
+
+    [TestMethod]
+    public void Usuario_Com_Email_Nulo_Deve_Falhar()
+    {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        var user = new User(_username, _nome, null, _cpf, _senha);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(user.IsValid);
     }
 
@@ -52,13 +75,29 @@ public class UserTest
     }
 
     [TestMethod]
+    public void Usuario_Com_CPF_Nulo_Deve_Falhar()
+    {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        var user = new User(_username, _nome, _email, null, _senha);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        Assert.IsFalse(user.IsValid);
+    }
+
+    [TestMethod]
     public void Usuario_Com_CPF_Invalido_Deve_Falhar()
     {
         var badCPF = "509.254.178-99";
         var user = new User(_username, _nome, _email, badCPF, _senha);
         Assert.IsFalse(user.IsValid);
     }
-
+    [TestMethod]
+    public void Usuario_Com_Senha_Nula_Deve_Falhar()
+    {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        var user = new User(_username, _nome, _email, _cpf, null);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        Assert.IsFalse(user.IsValid);
+    }
     [TestMethod]
     public void Usuario_Com_Senha_Fraca_Deve_Falhar()
     {
