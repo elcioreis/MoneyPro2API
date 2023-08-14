@@ -1,6 +1,8 @@
-﻿namespace MoneyPro2.API.ViewModels.Users;
+﻿using MoneyPro2.Shared.ViewModels;
 
-public class ResultUserViewModel
+namespace MoneyPro2.API.ViewModels.Users;
+
+public class ResultUserViewModel : ViewModel
 {
     public int UserId { get; set; }
     public string Username { get; set; } = string.Empty;

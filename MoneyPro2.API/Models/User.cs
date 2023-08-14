@@ -29,6 +29,26 @@ public partial class User : Notifiable<Notification>
             Senha = senha;
         Criptografada = Tools.GenerateMD5(Username, Senha);
 
+        UserContracts();
+    }
+
+
+    public int UserId { get; private set; }
+    public string Username { get; private set; } = string.Empty;
+    public string Nome { get; private set; } = string.Empty;
+    public Email Email { get; private set; } = new("");
+    public bool EmailVerificado { get; private set; } = false;
+    public CPF CPF { get; private set; } = new("");
+    [JsonIgnore]
+    public string Senha { get; private set; } = string.Empty;
+    [JsonIgnore]
+    public string Criptografada { get; set; } = string.Empty;
+    public ICollection<UserLogin> UserLogins { get; private set; } = new List<UserLogin>();
+    public ICollection<InstitutionType> InstitutionTypes { get; private set; } = new List<InstitutionType>();
+
+    private void UserContracts()
+    {
+        Clear();
         AddNotifications(
             new Contract<Notification>()
                 .Requires()
@@ -58,19 +78,6 @@ public partial class User : Notifiable<Notification>
         AddNotifications(Email?.Notifications);
         AddNotifications(CPF?.Notifications);
     }
-
-    public int UserId { get; private set; }
-    public string Username { get; private set; } = string.Empty;
-    public string Nome { get; private set; } = string.Empty;
-    public Email Email { get; private set; } = new("");
-    public bool EmailVerificado { get; private set; } = false;
-    public CPF CPF { get; private set; } = new("");
-    [JsonIgnore]
-    public string Senha { get; private set; } = string.Empty;
-    [JsonIgnore]
-    public string Criptografada { get; set; } = string.Empty;
-    public ICollection<UserLogin> UserLogins { get; private set; } = new List<UserLogin>();
-    public ICollection<InstitutionType> InstitutionTypes { get; private set; } = new List<InstitutionType>();
 
     [GeneratedRegex("^([a-z0-9@.]){1,20}$")]
     private static partial Regex AllowedChars();

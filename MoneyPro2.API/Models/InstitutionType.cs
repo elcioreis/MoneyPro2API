@@ -15,6 +15,33 @@ public class InstitutionType : Notifiable<Notification>
         Descricao = descricao;
         Ativo = true;
 
+        InstitutionTypeContracts();
+    }
+
+    public int TipoInstituicaoId { get; private set; }
+    public int UserId { get; private set; }
+    public string Apelido { get; private set; } = null!;
+    public string Descricao { get; private set; } = null!;
+    public bool? Ativo { get; private set; } = true;
+    public User User { get; set; } = null!;
+
+    public bool SetApelido(string apelido)
+    {
+        Apelido = apelido;
+        InstitutionTypeContracts();
+        return IsValid;
+    }
+
+    public bool SetDescricao(string descricao)
+    {
+        Descricao = descricao;
+        InstitutionTypeContracts();
+        return IsValid;
+    }
+
+    private void InstitutionTypeContracts()
+    {
+        Clear();
         AddNotifications(
             new Contract<Notification>()
                 .Requires()
@@ -32,11 +59,4 @@ public class InstitutionType : Notifiable<Notification>
                 )
         );
     }
-
-    public int TipoInstituicaoId { get; private set; }
-    public int UserId { get; private set; }
-    public string Apelido { get; private set; } = null!;
-    public string Descricao { get; private set; } = null!;
-    public bool? Ativo { get; private set; } = true;
-    public User User { get; set; } = null!;
 }

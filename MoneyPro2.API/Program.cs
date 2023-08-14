@@ -37,7 +37,9 @@ app.Run();
 
 void LoadConfiguration(WebApplicationBuilder builder)
 {
+#pragma warning disable CS8601 // Possível atribuição de referência nula.
     Configuration.JwtKey = builder.Configuration.GetValue<string>("JwtKey");
+#pragma warning restore CS8601 // Possível atribuição de referência nula.
 }
 
 void ConfigureAuthentication(WebApplicationBuilder builder)

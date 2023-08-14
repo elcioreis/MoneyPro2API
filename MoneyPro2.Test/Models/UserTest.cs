@@ -13,7 +13,9 @@ public class UserTest
     [TestMethod]
     public void Usuario_Com_Username_Nulo_Deve_Falhar()
     {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         var user = new User(null, _nome, _email, _cpf, _senha);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(user.IsValid);
     }
     [TestMethod]
@@ -26,7 +28,9 @@ public class UserTest
     [TestMethod]
     public void Usuario_Com_Nome_Nulo_Deve_Falhar()
     {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         var user = new User(_username, null, _email, _cpf, _senha);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(user.IsValid);
     }
     [TestMethod]
@@ -48,7 +52,9 @@ public class UserTest
     [TestMethod]
     public void Usuario_Com_Email_Nulo_Deve_Falhar()
     {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         var user = new User(_username, _nome, null, _cpf, _senha);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(user.IsValid);
     }
 
@@ -71,7 +77,9 @@ public class UserTest
     [TestMethod]
     public void Usuario_Com_CPF_Nulo_Deve_Falhar()
     {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         var user = new User(_username, _nome, _email, null, _senha);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(user.IsValid);
     }
 
@@ -85,7 +93,9 @@ public class UserTest
     [TestMethod]
     public void Usuario_Com_Senha_Nula_Deve_Falhar()
     {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         var user = new User(_username, _nome, _email, _cpf, null);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(user.IsValid);
     }
     [TestMethod]
