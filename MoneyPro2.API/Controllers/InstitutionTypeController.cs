@@ -6,8 +6,7 @@ using MoneyPro2.API.Data;
 using MoneyPro2.API.Extensions;
 using MoneyPro2.API.Models;
 using MoneyPro2.API.ViewModels;
-using MoneyPro2.API.ViewModels.IntitutionType;
-
+using MoneyPro2.API.ViewModels.InstitutionType;
 namespace MoneyPro2.API.Controllers;
 
 [ApiController]

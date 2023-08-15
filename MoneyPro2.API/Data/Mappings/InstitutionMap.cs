@@ -4,22 +4,28 @@ using MoneyPro2.API.Models;
 
 namespace MoneyPro2.API.Data.Mappings;
 
-public class InstitutionTypeMap : IEntityTypeConfiguration<InstitutionType>
+public class InstitutionMap : IEntityTypeConfiguration<Institution>
 {
-    public void Configure(EntityTypeBuilder<InstitutionType> builder)
+    public void Configure(EntityTypeBuilder<Institution> builder)
     {
         // Identifica a tabela
-        builder.ToTable("TipoInstituicao");
+        builder.ToTable("Instituicao");
         // Cria a chave primária
-        builder.HasKey(x => x.TipoInstituicaoId);
+        builder.HasKey(x => x.InstituicaoId);
         // Geração da ID pelo sql server
-        builder.Property(x => x.TipoInstituicaoId).ValueGeneratedOnAdd().UseIdentityColumn();
+        builder.Property(x => x.InstituicaoId).ValueGeneratedOnAdd().UseIdentityColumn();
 
         // Campos
         builder
             .Property(x => x.UserId)
             .IsRequired(true)
             .HasColumnName("UserId")
+            .HasColumnType("INT");
+
+        builder
+            .Property(x => x.TipoInstituicaoId)
+            .IsRequired(true)
+            .HasColumnName("TipoInstituicaoId")
             .HasColumnType("INT");
 
         builder
@@ -46,7 +52,21 @@ public class InstitutionTypeMap : IEntityTypeConfiguration<InstitutionType>
 
         // Criando indices
         builder
-            .HasIndex(x => new { x.UserId, x.Apelido }, "IX_TipoInstituicao_UserId_Apelido")
+            .HasIndex(x => new { x.UserId, x.Apelido }, "IX_Instituicao_UserId_Apelido")
+            .IsUnique(true)
+            .IsClustered(false);
+
+        builder
+            .HasIndex(
+                x =>
+                    new
+                    {
+                        x.UserId,
+                        x.TipoInstituicaoId,
+                        x.Apelido
+                    },
+                "IX_Instituicao_UserId_TipoInstituicaoId_Apelido"
+            )
             .IsUnique(true)
             .IsClustered(false);
     }

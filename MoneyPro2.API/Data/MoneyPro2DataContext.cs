@@ -15,6 +15,7 @@ public class MoneyPro2DataContext : DbContext
     public DbSet<User> Users { get; set; } = null!;
     public DbSet<UserLogin> UserLogins { get; set; } = null!;
     public DbSet<InstitutionType> InstitutionTypes { get; set; } = null!;
+    public DbSet<Institution> Institutions { get; set; } = null!;
 
     //protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(
     //        "Server=localhost;Database=MoneyPro2_Devel;Integrated Security=True;Trust Server Certificate=true"
@@ -36,6 +37,7 @@ public class MoneyPro2DataContext : DbContext
             .WithOne(e => e.User)
             .HasForeignKey(e => e.UserId)
             .IsRequired(false)
+            .HasConstraintName("FK_UserLogin_User_UserId")
             .OnDelete(DeleteBehavior.Cascade);
 
         // TipoInstituicao - User
@@ -45,10 +47,32 @@ public class MoneyPro2DataContext : DbContext
             .WithOne(e => e.User)
             .HasForeignKey(e => e.UserId)
             .IsRequired(false)
+            .HasConstraintName("FK_TipoInstituicao_User_UserId")
             .OnDelete(DeleteBehavior.Cascade);
+
+        // Insituicao - User
+        modelBuilder
+            .Entity<User>()
+            .HasMany(e => e.Institutions)
+            .WithOne(e => e.User)
+            .HasForeignKey(e => e.UserId)
+            .IsRequired(false)
+            .HasConstraintName("FK_Instituicao_User_UserId")
+            .OnDelete(DeleteBehavior.Cascade);
+
+        // Instituicao - TipoInstituicao
+        modelBuilder
+            .Entity<InstitutionType>()
+            .HasMany(e => e.Institutions)
+            .WithOne(e => e.InstitutionType)
+            .HasForeignKey(e => e.TipoInstituicaoId)
+            .IsRequired(false)
+            .HasConstraintName("FK_Instituicao_TipoInstituicao_TipoInstituicaoId")
+            .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.ApplyConfiguration(new UserMap());
         modelBuilder.ApplyConfiguration(new UserLoginMap());
         modelBuilder.ApplyConfiguration(new InstitutionTypeMap());
+        modelBuilder.ApplyConfiguration(new InstitutionMap());
     }
 }

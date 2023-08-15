@@ -3,44 +3,43 @@ using Flunt.Validations;
 
 namespace MoneyPro2.API.Models;
 
-public class InstitutionType : Notifiable<Notification>
+public class Institution : Notifiable<Notification>
 {
-    public InstitutionType() { }
-
-    public InstitutionType(int userId, string apelido, string descricao)
+    public Institution() { }
+    public Institution(int userId, int tipoInstituicaoId, string apelido, string descricao)
     {
-        TipoInstituicaoId = 0;
+        InstituicaoId = 0;
         UserId = userId;
+        TipoInstituicaoId = tipoInstituicaoId;
         Apelido = apelido;
         Descricao = descricao;
-        Ativo = true;
-
-        InstitutionTypeContracts();
+        InstitutionContracts();
     }
 
+    public int InstituicaoId { get; private set; }
     public int UserId { get; private set; }
     public int TipoInstituicaoId { get; private set; }
     public string Apelido { get; private set; } = null!;
     public string Descricao { get; private set; } = null!;
     public bool? Ativo { get; private set; } = true;
     public User User { get; set; } = null!;
-    public ICollection<Institution> Institutions { get; private set; } = new List<Institution>();
+    public InstitutionType InstitutionType { get; set; } = null!;
 
     public bool SetApelido(string apelido)
     {
         Apelido = apelido;
-        InstitutionTypeContracts();
+        InstitutionContracts();
         return IsValid;
     }
 
     public bool SetDescricao(string descricao)
     {
         Descricao = descricao;
-        InstitutionTypeContracts();
+        InstitutionContracts();
         return IsValid;
     }
 
-    private void InstitutionTypeContracts()
+    private void InstitutionContracts()
     {
         Clear();
         AddNotifications(
