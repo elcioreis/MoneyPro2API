@@ -45,6 +45,7 @@ public partial class User : Notifiable<Notification>
     public string Criptografada { get; set; } = string.Empty;
     public ICollection<UserLogin> UserLogins { get; private set; } = new List<UserLogin>();
     public ICollection<InstitutionType> InstitutionTypes { get; private set; } = new List<InstitutionType>();
+    public ICollection<Institution> Institutions { get; private set; } = new List<Institution>();
 
     private void UserContracts()
     {

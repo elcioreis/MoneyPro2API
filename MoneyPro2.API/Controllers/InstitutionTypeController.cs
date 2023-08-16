@@ -6,7 +6,7 @@ using MoneyPro2.API.Data;
 using MoneyPro2.API.Extensions;
 using MoneyPro2.API.Models;
 using MoneyPro2.API.ViewModels;
-using MoneyPro2.API.ViewModels.IntitutionType;
+using MoneyPro2.API.ViewModels.InstitutionType;
 
 namespace MoneyPro2.API.Controllers;
 
@@ -21,7 +21,7 @@ public class InstitutionTypeController : ControllerBase
 
         try
         {
-            var resultSet = await context.InstitutionTypes
+            var institutionTypes = await context.InstitutionTypes
                 .AsNoTracking()
                 .Where(x => x.UserId == userid)
                 .Select(
@@ -37,7 +37,7 @@ public class InstitutionTypeController : ControllerBase
                 .OrderBy(x => x.Apelido)
                 .ToListAsync();
 
-            return Ok(new ResultViewModel<dynamic>(resultSet));
+            return Ok(new ResultViewModel<dynamic>(institutionTypes));
         }
         catch (Exception)
         {
@@ -108,6 +108,13 @@ public class InstitutionTypeController : ControllerBase
         var institutionType = new InstitutionType(userid, model.Apelido, model.Descricao);
 #pragma warning restore CS8604 // Possível argumento de referência nula.
 
+        if (!institutionType.IsValid)
+        {
+            return BadRequest(
+                new ResultViewModel<List<Notification>>(institutionType.Notifications.ToList())
+            );
+        }
+
         try
         {
             await context.InstitutionTypes.AddAsync(institutionType);
@@ -162,9 +169,7 @@ public class InstitutionTypeController : ControllerBase
         if (!institutionType.IsValid)
         {
             return BadRequest(
-                new ResultViewModel<List<Notification>>(
-                    institutionType.Notifications.Distinct().ToList()
-                )
+                new ResultViewModel<List<Notification>>(institutionType.Notifications.ToList())
             );
         }
 

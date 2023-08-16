@@ -1,6 +1,6 @@
 ﻿using MoneyPro2.Shared.ViewModels;
 
-namespace MoneyPro2.API.ViewModels.IntitutionType;
+namespace MoneyPro2.API.ViewModels.InstitutionType;
 
 public class InstitutionTypeViewModel : ViewModel
 {

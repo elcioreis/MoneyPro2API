@@ -24,6 +24,7 @@ public class InstitutionTypeTest
         InstitutionType institutionType = new InstitutionType(_userId, badApelido, _descricao);
         Assert.IsFalse(institutionType.IsValid);
     }
+
     [TestMethod]
     public void Tipo_De_Instituicao_Com_Descricao_Nula_Deve_Falhar()
     {
