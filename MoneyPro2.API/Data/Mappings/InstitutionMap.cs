@@ -52,11 +52,6 @@ public class InstitutionMap : IEntityTypeConfiguration<Institution>
 
         // Criando indices
         builder
-            .HasIndex(x => new { x.UserId, x.Apelido }, "IX_Instituicao_UserId_Apelido")
-            .IsUnique(true)
-            .IsClustered(false);
-
-        builder
             .HasIndex(
                 x =>
                     new

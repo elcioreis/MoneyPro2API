@@ -13,7 +13,9 @@ public class InstitutionTest
     [TestMethod]
     public void Instituicao_Com_Apelido_Nulo_Deve_Falhar()
     {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         var institution = new Institution(_userId, _tipoInstituicaoId, null, _descricao);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(institution.IsValid);
     }
 
@@ -28,7 +30,9 @@ public class InstitutionTest
     [TestMethod]
     public void Instituicao_Com_Descricao_Nula_Deve_Falhar()
     {
+#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         var institution = new Institution(_userId, _tipoInstituicaoId, _apelido, null);
+#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(institution.IsValid);
     }
 

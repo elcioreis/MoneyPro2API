@@ -25,6 +25,13 @@ public class Institution : Notifiable<Notification>
     public User User { get; set; } = null!;
     public InstitutionType InstitutionType { get; set; } = null!;
 
+    public bool SetTipoInsituicao(int tipoInstituicaoId)
+    {
+        TipoInstituicaoId = tipoInstituicaoId;
+        InstitutionContracts();
+        return IsValid;
+    }
+
     public bool SetApelido(string apelido)
     {
         Apelido = apelido;

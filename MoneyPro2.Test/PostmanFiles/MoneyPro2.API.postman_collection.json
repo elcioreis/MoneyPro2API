@@ -4,9 +4,399 @@
 		"name": "MoneyPro2.API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15533135",
-		"_collection_link": "https://warped-crater-338486.postman.co/workspace/Team-Workspace~378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-e9637132-1dd1-493e-a827-93e8ad8d2a79?action=share&creator=15533135&source=collection_link"
+		"_collection_link": "https://warped-crater-338486.postman.co/workspace/Team-Workspace~378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-e9637132-1dd1-493e-a827-93e8ad8d2a79?action=share&source=collection_link&creator=15533135"
 	},
 	"item": [
+		{
+			"name": "InstitutionType",
+			"item": [
+				{
+					"name": "v1/institutiontype",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "https://localhost:7278/v1/institutiontype",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institutiontype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institutiontype/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/institutiontype/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institutiontype",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institutiontype",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\":\"Empregador\",\r\n    \"descricao\":\"Empresa empregadora\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7278/v1/institutiontype",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institutiontype"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institutiontype/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\":\"Bancos\",\r\n    \"descricao\":\"Instituições bancárias\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7278/v1/institutiontype/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institutiontype",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institutiontype/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/institutiontype/3",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institutiontype",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Institution",
+			"item": [
+				{
+					"name": "v1/institution",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/institution",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institution"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institution/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/institution/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institution",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institution/institutiontype/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/institution/institutiontype/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institution",
+								"institutiontype",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institution",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoInstituicaoId\": \"1\",\r\n    \"apelido\": \"Bradesco\",\r\n    \"descricao\": \"Banco Bradesco SA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7278/v1/institution",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institution"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institution/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"tipoInstituicaoId\": \"1\",\r\n    \"apelido\": \"C6 Bank\",\r\n    \"descricao\": \"C6 Bank SA\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7278/v1/institution/11",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institution",
+								"11"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institution/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/institution/14",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institution",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "v1/login",
 			"request": {
@@ -60,183 +450,6 @@
 					"path": [
 						"v1",
 						"users"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "v1/institutiontype",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "",
-						"value": "",
-						"type": "text"
-					}
-				],
-				"url": {
-					"raw": "https://localhost:7278/v1/institutiontype",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7278",
-					"path": [
-						"v1",
-						"institutiontype"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "v1/institutiontype/{id}",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:7278/v1/institutiontype/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7278",
-					"path": [
-						"v1",
-						"institutiontype",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "v1/institutiontype",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"apelido\":\"Bancos\",\r\n    \"descricao\":\"Insituições bancárias\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://localhost:7278/v1/institutiontype",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7278",
-					"path": [
-						"v1",
-						"institutiontype"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "v1/institutiontype/{id}",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
-							"type": "string"
-						}
-					]
-				},
-				"method": "PUT",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\r\n    \"apelido\":\"Bancos\",\r\n    \"descricao\":\"Instituições bancárias\"\r\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "https://localhost:7278/v1/institutiontype/1",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7278",
-					"path": [
-						"v1",
-						"institutiontype",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "v1/institutiontype/{id}",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcmltYXJ5c2lkIjoiMSIsInVuaXF1ZV9uYW1lIjoiSm9zw6kgZGEgU2lsdmEiLCJlbWFpbCI6Impvc2Uuc2lsdmFAZ21haWwuY29tIiwibmJmIjoxNjkyMDE5MjQxLCJleHAiOjE2OTIwNjI0NDEsImlhdCI6MTY5MjAxOTI0MX0.h4vW37p6isqbzhmJbq-UgLwSg5NgheIM4FO21-x4Hps",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "https://localhost:7278/v1/institutiontype/3",
-					"protocol": "https",
-					"host": [
-						"localhost"
-					],
-					"port": "7278",
-					"path": [
-						"v1",
-						"institutiontype",
-						"3"
 					]
 				}
 			},

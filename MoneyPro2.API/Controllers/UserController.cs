@@ -29,7 +29,7 @@ public class UserController : ControllerBase
 
         if (user == null)
         {
-            return Unauthorized(new ResultViewModel<string>("01x01 - Usuário ou senha incorretos"));
+            return Unauthorized(new ResultViewModel<string>("01x06 - Usuário ou senha incorretos"));
         }
 
         try
@@ -39,7 +39,7 @@ public class UserController : ControllerBase
         }
         catch
         {
-            return StatusCode(500, new ResultViewModel<string>("01x02 - Não foi possível logar"));
+            return StatusCode(500, new ResultViewModel<string>("01x07 - Não foi possível logar"));
         }
 
         try
@@ -61,10 +61,9 @@ public class UserController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<string>("01x03 - Falha interna no servidor")
+                new ResultViewModel<string>("01x08 - Falha interna no servidor")
             );
         }
-        //return StatusCode(401, new ResultViewModel<string>("01x01 - Usuário ou senha incorretos"));
     }
 
     [HttpPost("v1/users/")]
@@ -108,7 +107,7 @@ public class UserController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"00x02 - O usuário '{user.Username}' já está em uso"
+                        $"01x02 - O usuário '{user.Username}' já está em uso"
                     )
                 );
 
@@ -119,7 +118,7 @@ public class UserController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"00x03 - O e-mail '{user.Email.Address}' já está em uso"
+                        $"01x03 - O e-mail '{user.Email.Address}' já está em uso"
                     )
                 );
 
@@ -130,20 +129,20 @@ public class UserController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"00x04 - O CPF '{user.CPF.Conteudo}' já está em uso"
+                        $"01x04 - O CPF '{user.CPF.Conteudo}' já está em uso"
                     )
                 );
 
             return StatusCode(
                 500,
-                new ResultViewModel<string>("00x05 - Erro ao cadastrar o usuário")
+                new ResultViewModel<string>("01x05 - Erro ao cadastrar o usuário")
             );
         }
         catch
         {
             return StatusCode(
                 500,
-                new ResultViewModel<string>("00x01 - Falha interna no servidor")
+                new ResultViewModel<string>("01x01 - Falha interna no servidor")
             );
         }
     }
