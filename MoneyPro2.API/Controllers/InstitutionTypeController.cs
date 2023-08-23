@@ -80,7 +80,7 @@ public class InstitutionTypeController : ControllerBase
             }
             else
             {
-                return NotFound(new ResultViewModel<string>("02x02 - Informação não localizada"));
+                return NotFound(new ResultViewModel<string>("02x02 - Conteúdo inexistente"));
             }
         }
         catch (Exception)
@@ -119,7 +119,7 @@ public class InstitutionTypeController : ControllerBase
         {
             await context.InstitutionTypes.AddAsync(institutionType);
             await context.SaveChangesAsync();
-            //return Ok(new ResultViewModel<InstitutionType>(institutionType));
+
             return Ok(
                 new ResultViewModel<dynamic>(
                     new
@@ -159,7 +159,7 @@ public class InstitutionTypeController : ControllerBase
         );
 
         if (institutionType == null)
-            return NotFound(new ResultViewModel<string>("02x05 - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("02x05 - Conteúdo inexistente"));
 
 #pragma warning disable CS8604 // Possível argumento de referência nula.
         institutionType.SetApelido(model.Apelido);
@@ -235,7 +235,7 @@ public class InstitutionTypeController : ControllerBase
         );
 
         if (institutionType == null)
-            return NotFound(new ResultViewModel<string>("02x09 - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("02x09 - Conteúdo inexistente"));
 
         try
         {

@@ -52,8 +52,6 @@ public class Institution : Notifiable<Notification>
         AddNotifications(
             new Contract<Notification>()
                 .Requires()
-                //.IsNotNull(Apelido, "Apelido", "O apelido não pode ser nulo")
-                //.IsNotNull(Descricao, "Descricao", "A descrição não pode ser nula")
                 .IsTrue(
                     Apelido?.Length >= 1 && Apelido?.Length <= 40,
                     "Apelido",

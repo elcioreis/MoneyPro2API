@@ -276,7 +276,7 @@ public class InstitutionController : ControllerBase
 
             return StatusCode(
                 500,
-                new ResultViewModel<string>("03x09 - Erro ao cadastrar a instituição")
+                new ResultViewModel<string>("03x09 - Erro ao atualizar a instituição")
             );
         }
         catch (Exception)

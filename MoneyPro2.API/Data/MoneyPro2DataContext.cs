@@ -16,6 +16,7 @@ public class MoneyPro2DataContext : DbContext
     public DbSet<UserLogin> UserLogins { get; set; } = null!;
     public DbSet<InstitutionType> InstitutionTypes { get; set; } = null!;
     public DbSet<Institution> Institutions { get; set; } = null!;
+    public DbSet<Coin> Coins { get; set; } = null!;
 
     //protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(
     //        "Server=localhost;Database=MoneyPro2_Devel;Integrated Security=True;Trust Server Certificate=true"
@@ -28,7 +29,8 @@ public class MoneyPro2DataContext : DbContext
         modelBuilder.Ignore<Email>();
         modelBuilder.Ignore<CPF>();
 
-        // Chaves estrangeiras
+        // Sequencias
+        modelBuilder.HasSequence<int>("Seq_MoedaID").StartsAt(1).IncrementsBy(1);
 
         // UserLogin - User
         modelBuilder
@@ -74,5 +76,6 @@ public class MoneyPro2DataContext : DbContext
         modelBuilder.ApplyConfiguration(new UserLoginMap());
         modelBuilder.ApplyConfiguration(new InstitutionTypeMap());
         modelBuilder.ApplyConfiguration(new InstitutionMap());
+        modelBuilder.ApplyConfiguration(new CoinMap());
     }
 }
