@@ -13,8 +13,8 @@ public class CoinTest
     public readonly string _moedaVirtualNao = "N";
 #pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
     public readonly string _bancoCentral = null;
-    public readonly string _observacao = null;
     public readonly string _eletronica = null;
+    public readonly string _observacao = null;
 #pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
 
     [TestMethod]
@@ -26,8 +26,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualSim,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsTrue(coin.IsValid);
     }
@@ -41,8 +41,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsTrue(coin.IsValid);
     }
@@ -56,8 +56,8 @@ public class CoinTest
             _padraoNao,
             _moedaVirtualSim,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsTrue(coin.IsValid);
     }
@@ -71,8 +71,8 @@ public class CoinTest
             _padraoNao,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsTrue(coin.IsValid);
     }
@@ -87,8 +87,8 @@ public class CoinTest
             _padraoNao,
             _moedaVirtualNao,
             bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsTrue(coin.IsValid);
     }
@@ -103,8 +103,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsFalse(coin.IsValid);
     }
@@ -123,8 +123,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
 #pragma warning restore CS8604 // Possível argumento de referência nula.
         Assert.IsFalse(coin.IsValid);
@@ -140,8 +140,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsFalse(coin.IsValid);
     }
@@ -160,8 +160,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
 #pragma warning restore CS8604 // Possível argumento de referência nula.
         Assert.IsFalse(coin.IsValid);
@@ -177,8 +177,8 @@ public class CoinTest
             badPadrao,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsFalse(coin.IsValid);
     }
@@ -197,8 +197,8 @@ public class CoinTest
             nullPadrao,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
 #pragma warning restore CS8604 // Possível argumento de referência nula.
         Assert.IsFalse(coin.IsValid);
@@ -214,8 +214,8 @@ public class CoinTest
             _padraoSim,
             badMoedaVirtual,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsFalse(coin.IsValid);
     }
@@ -234,8 +234,8 @@ public class CoinTest
             _padraoSim,
             nullMoedaVirtual,
             _bancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
 #pragma warning restore CS8604 // Possível argumento de referência nula.
 
@@ -252,8 +252,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             badCancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsFalse(coin.IsValid);
     }
@@ -268,8 +268,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             badCancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsFalse(coin.IsValid);
     }
@@ -284,8 +284,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             badCancoCentral,
-            _observacao,
-            _eletronica
+            _eletronica,
+            _observacao
         );
         Assert.IsFalse(coin.IsValid);
     }
@@ -300,8 +300,8 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             _bancoCentral,
-            badObservacao,
-            _eletronica
+            _eletronica,
+            badObservacao
         );
         Assert.IsFalse(coin.IsValid);
     }
@@ -316,9 +316,128 @@ public class CoinTest
             _padraoSim,
             _moedaVirtualNao,
             _bancoCentral,
-            _observacao,
-            badEletronica
+            badEletronica,
+            _observacao
         );
+        Assert.IsFalse(coin.IsValid);
+    }
+
+    [TestMethod]
+    public void Moeda_Com_Apelido_Alterado_Invalido_Deve_Falhar()
+    {
+        var coin = new Coin(
+            _apelido,
+            _simbolo,
+            _padraoSim,
+            _moedaVirtualNao,
+            _bancoCentral,
+            _eletronica,
+            _observacao
+        );
+        var badApelido = new string('x', 100);
+        coin.SetApelido(badApelido);
+        Assert.IsFalse(coin.IsValid);
+    }
+
+    [TestMethod]
+    public void Moeda_Com_Simbolo_Alterado_Invalido_Deve_Falhar()
+    {
+        var coin = new Coin(
+            _apelido,
+            _simbolo,
+            _padraoSim,
+            _moedaVirtualNao,
+            _bancoCentral,
+            _eletronica,
+            _observacao
+        );
+        var badSimbolo = new string('x', 100);
+        coin.SetSimbolo(badSimbolo);
+        Assert.IsFalse(coin.IsValid);
+    }
+
+    [TestMethod]
+    public void Moeda_Com_Padrao_Alterado_Invalido_Deve_Falhar()
+    {
+        var coin = new Coin(
+            _apelido,
+            _simbolo,
+            _padraoSim,
+            _moedaVirtualNao,
+            _bancoCentral,
+            _eletronica,
+            _observacao
+        );
+        var badPadrao = "Y";
+        coin.SetPadrao(badPadrao);
+        Assert.IsFalse(coin.IsValid);
+    }
+
+    [TestMethod]
+    public void Moeda_Com_MoedaVirtual_Alterado_Invalido_Deve_Falhar()
+    {
+        var coin = new Coin(
+            _apelido,
+            _simbolo,
+            _padraoSim,
+            _moedaVirtualNao,
+            _bancoCentral,
+            _eletronica,
+            _observacao
+        );
+        var badMoedaVirtual = "Y";
+        coin.SetMoedaVirtual(badMoedaVirtual);
+        Assert.IsFalse(coin.IsValid);
+    }
+
+    [TestMethod]
+    public void Moeda_Com_BancoCentral_Alterado_Invalido_Deve_Falhar()
+    {
+        var coin = new Coin(
+            _apelido,
+            _simbolo,
+            _padraoSim,
+            _moedaVirtualNao,
+            _bancoCentral,
+            _eletronica,
+            _observacao
+        );
+        var badBancoCentral = "CEM";
+        coin.SetBancoCentral(badBancoCentral);
+        Assert.IsFalse(coin.IsValid);
+    }
+
+    [TestMethod]
+    public void Moeda_Com_Eletronica_Alterada_Invalido_Deve_Falhar()
+    {
+        var coin = new Coin(
+            _apelido,
+            _simbolo,
+            _padraoSim,
+            _moedaVirtualNao,
+            _bancoCentral,
+            _eletronica,
+            _observacao
+        );
+        var badEletronica = new string('x', 1000);
+        coin.SetEletronica(badEletronica);
+        Assert.IsFalse(coin.IsValid);
+    }
+
+    [TestMethod]
+    public void Moeda_Com_Observacao_Alterado_Invalido_Deve_Falhar()
+    {
+        var coin = new Coin(
+            _apelido,
+            _simbolo,
+            _padraoSim,
+            _moedaVirtualNao,
+            _bancoCentral,
+            _eletronica,
+            _observacao
+        );
+        var badObservacao = new string('x', 1000);
+        coin.SetEletronica(badObservacao);
         Assert.IsFalse(coin.IsValid);
     }
 }
