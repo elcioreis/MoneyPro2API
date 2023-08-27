@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyPro2.API.Data;
 using MoneyPro2.API.Extensions;
-using MoneyPro2.API.Models;
 using MoneyPro2.API.Services;
 using MoneyPro2.API.ViewModels;
 using MoneyPro2.API.ViewModels.Users;
-using MoneyPro2.Shared.Functions;
+using MoneyPro2.Domain.Entities;
+using MoneyPro2.Domain.Functions;
 
 namespace MoneyPro2.API.Controllers;
 

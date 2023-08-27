@@ -1,11 +1,11 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
-using MoneyPro2.API.ValueObjects;
-using MoneyPro2.Shared.Functions;
+using MoneyPro2.Domain.Functions;
+using MoneyPro2.Domain.ValueObjects;
 using System.Text.Json.Serialization;
 using System.Text.RegularExpressions;
 
-namespace MoneyPro2.API.Models;
+namespace MoneyPro2.Domain.Entities;
 
 public partial class User : Notifiable<Notification>
 {

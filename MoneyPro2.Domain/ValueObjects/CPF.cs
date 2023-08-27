@@ -1,9 +1,9 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
-using MoneyPro2.Shared.Functions;
+using MoneyPro2.Domain.Functions;
 using MoneyPro2.Shared.ValueObjects;
 
-namespace MoneyPro2.API.ValueObjects;
+namespace MoneyPro2.Domain.ValueObjects;
 
 public class CPF : ValueObject
 {

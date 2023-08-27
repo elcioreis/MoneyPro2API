@@ -1,4 +1,4 @@
-﻿using MoneyPro2.API.Models;
+﻿using MoneyPro2.Domain.Entities;
 
 namespace MoneyPro2.Test.Models;
 

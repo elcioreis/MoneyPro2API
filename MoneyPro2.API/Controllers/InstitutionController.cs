@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MoneyPro2.API.Data;
 using MoneyPro2.API.Extensions;
-using MoneyPro2.API.Models;
 using MoneyPro2.API.ViewModels;
 using MoneyPro2.API.ViewModels.Institution;
+using MoneyPro2.Domain.Entities;
 
 namespace MoneyPro2.API.Controllers;
 

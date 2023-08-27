@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace MoneyPro2.Shared.Functions;
+namespace MoneyPro2.Domain.Functions;
 
 public static partial class Tools
 {
