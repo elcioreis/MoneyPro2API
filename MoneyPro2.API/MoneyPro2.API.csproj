@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MoneyPro2.Shared\MoneyPro2.Shared.csproj" />
+    <ProjectReference Include="..\MoneyPro2.Domain\MoneyPro2.Domain.csproj" />
   </ItemGroup>
 
 </Project>

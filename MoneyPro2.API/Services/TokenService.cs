@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using MoneyPro2.API.Extensions;
-using MoneyPro2.API.Models;
+using MoneyPro2.Domain.Entities;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;

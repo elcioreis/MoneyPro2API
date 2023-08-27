@@ -1,8 +1,8 @@
 ﻿using Flunt.Notifications;
 using Microsoft.EntityFrameworkCore;
 using MoneyPro2.API.Data.Mappings;
-using MoneyPro2.API.Models;
-using MoneyPro2.API.ValueObjects;
+using MoneyPro2.Domain.Entities;
+using MoneyPro2.Domain.ValueObjects;
 
 namespace MoneyPro2.API.Data;
 

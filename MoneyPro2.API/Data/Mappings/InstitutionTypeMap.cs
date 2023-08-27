@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using MoneyPro2.API.Models;
+using MoneyPro2.Domain.Entities;
 
 namespace MoneyPro2.API.Data.Mappings;
 

@@ -1,4 +1,4 @@
-﻿using MoneyPro2.API.Models;
+﻿using MoneyPro2.Domain.Entities;
 
 namespace MoneyPro2.Test.Models;
 
@@ -40,7 +40,7 @@ public class InstitutionTest
     public void Instituicao_Com_Descricao_Invalida_Deve_Falhar()
     {
         var badDescricao = new string('x', 101);
-        Institution institution = new Institution(
+        Institution institution = new(
             _userId,
             _tipoInstituicaoId,
             _apelido,

@@ -1,7 +1,7 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
 
-namespace MoneyPro2.API.Models;
+namespace MoneyPro2.Domain.Entities;
 
 public class Institution : Notifiable<Notification>
 {

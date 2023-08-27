@@ -2,7 +2,7 @@
 using Flunt.Validations;
 using MoneyPro2.Shared.ValueObjects;
 
-namespace MoneyPro2.API.ValueObjects;
+namespace MoneyPro2.Domain.ValueObjects;
 
 public class Email : ValueObject
 {

@@ -1,7 +1,7 @@
 ﻿using Flunt.Notifications;
 using Flunt.Validations;
 
-namespace MoneyPro2.API.Models;
+namespace MoneyPro2.Domain.Entities;
 
 public class Coin : Notifiable<Notification>
 {
@@ -41,9 +41,7 @@ public class Coin : Notifiable<Notification>
         Eletronica = eletronica;
         Observacao = observacao;
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         CoinContracts();
-#pragma warning restore CS8604 // Possível argumento de referência nula.
     }
 
     public int MoedaId { get; private set; }
@@ -93,8 +91,7 @@ public class Coin : Notifiable<Notification>
     {
         if (bancoCentral != null)
         {
-            int numeroBancoCentral;
-            if (int.TryParse(bancoCentral, out numeroBancoCentral))
+            if (int.TryParse(bancoCentral, out int numeroBancoCentral))
                 BancoCentral = numeroBancoCentral;
             else
                 BancoCentral = 0;

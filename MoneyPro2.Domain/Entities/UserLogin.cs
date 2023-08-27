@@ -1,4 +1,4 @@
-﻿namespace MoneyPro2.API.Models;
+﻿namespace MoneyPro2.Domain.Entities;
 
 public class UserLogin
 {

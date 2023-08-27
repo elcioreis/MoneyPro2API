@@ -1,4 +1,4 @@
-﻿using MoneyPro2.API.Models;
+﻿using MoneyPro2.Domain.Entities;
 using System.Security.Claims;
 
 namespace MoneyPro2.API.Extensions;
@@ -39,9 +39,8 @@ public static class RoleClaimsExtension
                     .Value ?? string.Empty;
 #pragma warning restore CS8602 // Desreferência de uma referência possivelmente nula.
 
-            int id = 0;
 
-            if (int.TryParse(strID, out id))
+            if (int.TryParse(strID, out int id))
             {
                 return id;
             }
