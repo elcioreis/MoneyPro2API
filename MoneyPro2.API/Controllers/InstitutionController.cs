@@ -283,7 +283,7 @@ public class InstitutionController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("03x10 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("03x0A - Erro interno no servidor")
             );
         }
     }
@@ -303,7 +303,7 @@ public class InstitutionController : ControllerBase
 
         if (institution == null)
         {
-            return NotFound(new ResultViewModel<string>("03x11 - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("03x0B - Informação não localizada"));
         }
 
         try
@@ -328,14 +328,14 @@ public class InstitutionController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<string>("03x12 - Erro ao excluir a instituição")
+                new ResultViewModel<string>("03x0C - Erro ao excluir a instituição")
             );
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("03x13 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("03x0D - Erro interno no servidor")
             );
         }
     }

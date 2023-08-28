@@ -10,7 +10,6 @@ public class Coin : Notifiable<Notification>
     public Coin(
         string apelido,
         string simbolo,
-        string padrao,
         string moedaVirtual,
         string bancoCentral,
         string eletronica,
@@ -22,12 +21,7 @@ public class Coin : Notifiable<Notification>
         SetSimbolo(simbolo);
         //Simbolo = simbolo;
 
-        if (padrao?.ToLower() == "s")
-            Padrao = true;
-        else if (padrao?.ToLower() == "n")
-            Padrao = false;
-        else
-            Padrao = null;
+        Padrao = false;
 
         if (moedaVirtual?.ToLower() == "s")
             MoedaVirtual = true;
@@ -47,8 +41,8 @@ public class Coin : Notifiable<Notification>
     public int MoedaId { get; private set; }
     public string Apelido { get; private set; } = string.Empty;
     public string Simbolo { get; private set; } = string.Empty;
-    public bool? Padrao { get; private set; }
-    public bool? MoedaVirtual { get; private set; }
+    public bool Padrao { get; private set; } = false;
+    public bool? MoedaVirtual { get; private set; } = false;
     public int? BancoCentral { get; private set; }
     public string? Eletronica { get; private set; } = string.Empty;
     public string? Observacao { get; private set; } = string.Empty;
@@ -65,15 +59,9 @@ public class Coin : Notifiable<Notification>
         CoinContracts();
     }
 
-    public void SetPadrao(string padrao)
+    public void SetPadrao(bool padrao)
     {
-        if (padrao?.ToLower() == "s")
-            Padrao = true;
-        else if (padrao?.ToLower() == "n")
-            Padrao = false;
-        else
-            Padrao = null;
-        CoinContracts();
+        Padrao = padrao;
     }
 
     public void SetMoedaVirtual(string moedaVirtual)
@@ -84,6 +72,7 @@ public class Coin : Notifiable<Notification>
             MoedaVirtual = false;
         else
             MoedaVirtual = null;
+
         CoinContracts();
     }
 
@@ -131,7 +120,6 @@ public class Coin : Notifiable<Notification>
                     "Simbolo",
                     "O símbolo deve conter de 1 a 10 caracteres"
                 )
-                .IsTrue(Padrao != null, "Padrão", "O padrão deve ser (S)im ou (N)ão")
                 .IsTrue(
                     MoedaVirtual != null,
                     "MoedaVirtual",
