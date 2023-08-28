@@ -9,9 +9,9 @@ public static class RoleClaimsExtension
     {
         var result = new List<Claim>
         {
-            new Claim(ClaimTypes.PrimarySid, user.UserId.ToString()),
-            new Claim(ClaimTypes.Name, user.Nome),
-            new Claim(ClaimTypes.Email, user.Email.ToString())
+            new Claim("UserId", user.UserId.ToString()),
+            new Claim(ClaimTypes.Name, user.Nome ?? ""),
+            new Claim(ClaimTypes.Email, user.Email?.ToString() ?? "")
         };
         return result;
     }
@@ -28,14 +28,15 @@ public static class RoleClaimsExtension
 
     public static int GetUserId(this ClaimsPrincipal user)
     {
+        //const string _primarysid = "primarysid";
 
-        const string _primarysid = "primarysid";
-        if (user != null && user.HasClaim(c => c.Type.ToLower().EndsWith(_primarysid)))
+        const string _userid = "userid";
+        if (user != null && user.HasClaim(c => c.Type.ToLower().EndsWith(_userid)))
         {
 #pragma warning disable CS8602 // Desreferência de uma referência possivelmente nula.
             string strID =
                 user.Claims
-                    .FirstOrDefault(x => x.Type.ToLowerInvariant().EndsWith(_primarysid))
+                    .FirstOrDefault(x => x.Type.ToLowerInvariant().EndsWith(_userid))
                     .Value ?? string.Empty;
 #pragma warning restore CS8602 // Desreferência de uma referência possivelmente nula.
 
@@ -46,7 +47,7 @@ public static class RoleClaimsExtension
             }
         }
 
-        return 0;
+        return -1;
     }
 
     public static string GetUserEmail(this ClaimsPrincipal user)

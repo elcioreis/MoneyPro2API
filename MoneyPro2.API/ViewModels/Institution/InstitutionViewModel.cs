@@ -4,7 +4,7 @@ namespace MoneyPro2.API.ViewModels.Institution;
 
 public class InstitutionViewModel : ViewModel
 {
-    public int TipoInstituicaoId { get; set; }
-    public string Apelido { get; set; } = null!;
-    public string Descricao { get; set; } = null!;
+    public string? TipoInstituicaoId { get; set; } = null;
+    public string? Apelido { get; set; } = null!;
+    public string? Descricao { get; set; } = null!;
 }

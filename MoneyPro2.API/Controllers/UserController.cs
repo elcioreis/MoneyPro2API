@@ -41,7 +41,7 @@ public class UserController : ControllerBase
                     {
                         userid = user.UserId,
                         username = user.Username,
-                        email = user.Email.Address
+                        email = user.Email?.Address
                     }
                 )
             );
@@ -66,7 +66,7 @@ public class UserController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"01x02 - O e-mail '{user.Email.Address}' já está em uso"
+                        $"01x02 - O e-mail '{user.Email?.Address}' já está em uso"
                     )
                 );
 
@@ -77,7 +77,7 @@ public class UserController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"01x03 - O CPF '{user.CPF.Conteudo}' já está em uso"
+                        $"01x03 - O CPF '{user.CPF?.Conteudo}' já está em uso"
                     )
                 );
 
@@ -131,8 +131,8 @@ public class UserController : ControllerBase
                     new ResultUserViewModel
                     {
                         UserId = user.UserId,
-                        Username = user.Username,
-                        Email = user.Email.Address,
+                        Username = user.Username ?? "",
+                        Email = user.Email?.Address ?? "",
                         Token = token
                     }
                 )

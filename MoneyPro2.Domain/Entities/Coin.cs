@@ -8,19 +8,16 @@ public class Coin : Notifiable<Notification>
     public Coin() { }
 
     public Coin(
-        string apelido,
-        string simbolo,
-        string moedaVirtual,
-        string bancoCentral,
-        string eletronica,
-        string observacao
+        string? apelido,
+        string? simbolo,
+        string? moedaVirtual,
+        string? bancoCentral,
+        string? eletronica,
+        string? observacao
     )
     {
         SetApelido(apelido);
-        //Apelido = apelido;
         SetSimbolo(simbolo);
-        //Simbolo = simbolo;
-
         Padrao = false;
 
         if (moedaVirtual?.ToLower() == "s")
@@ -39,21 +36,21 @@ public class Coin : Notifiable<Notification>
     }
 
     public int MoedaId { get; private set; }
-    public string Apelido { get; private set; } = string.Empty;
-    public string Simbolo { get; private set; } = string.Empty;
+    public string? Apelido { get; private set; } = string.Empty;
+    public string? Simbolo { get; private set; } = string.Empty;
     public bool Padrao { get; private set; } = false;
     public bool? MoedaVirtual { get; private set; } = false;
     public int? BancoCentral { get; private set; }
     public string? Eletronica { get; private set; } = string.Empty;
     public string? Observacao { get; private set; } = string.Empty;
 
-    public void SetApelido(string apelido)
+    public void SetApelido(string? apelido)
     {
         Apelido = apelido;
         CoinContracts();
     }
 
-    public void SetSimbolo(string simbolo)
+    public void SetSimbolo(string? simbolo)
     {
         Simbolo = simbolo;
         CoinContracts();
@@ -76,7 +73,7 @@ public class Coin : Notifiable<Notification>
         CoinContracts();
     }
 
-    public void SetBancoCentral(string bancoCentral)
+    public void SetBancoCentral(string? bancoCentral)
     {
         if (bancoCentral != null)
         {

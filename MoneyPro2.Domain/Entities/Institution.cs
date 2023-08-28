@@ -6,44 +6,44 @@ namespace MoneyPro2.Domain.Entities;
 public class Institution : Notifiable<Notification>
 {
     public Institution() { }
-    public Institution(int userId, int tipoInstituicaoId, string apelido, string descricao)
+    public Institution(int userId, string? tipoInstituicaoId, string? apelido, string? descricao)
     {
         InstituicaoId = 0;
         UserId = userId;
-        TipoInstituicaoId = tipoInstituicaoId;
-        Apelido = apelido;
-        Descricao = descricao;
+        SetTipoInsituicao(tipoInstituicaoId);
+        SetApelido(apelido);
+        SetDescricao(descricao);
         InstitutionContracts();
     }
 
     public int InstituicaoId { get; private set; }
     public int UserId { get; private set; }
-    public int TipoInstituicaoId { get; private set; }
-    public string Apelido { get; private set; } = null!;
-    public string Descricao { get; private set; } = null!;
+    public int? TipoInstituicaoId { get; private set; }
+    public string? Apelido { get; private set; } = null!;
+    public string? Descricao { get; private set; } = null!;
     public bool? Ativo { get; private set; } = true;
     public User User { get; set; } = null!;
     public InstitutionType InstitutionType { get; set; } = null!;
 
-    public bool SetTipoInsituicao(int tipoInstituicaoId)
+    public void SetTipoInsituicao(string? tipoInstituicaoId)
     {
-        TipoInstituicaoId = tipoInstituicaoId;
+        if (int.TryParse(tipoInstituicaoId, out int idTipo))
+            TipoInstituicaoId = idTipo;
+        else
+            TipoInstituicaoId = null;
         InstitutionContracts();
-        return IsValid;
     }
 
-    public bool SetApelido(string apelido)
+    public void SetApelido(string? apelido)
     {
         Apelido = apelido;
         InstitutionContracts();
-        return IsValid;
     }
 
-    public bool SetDescricao(string descricao)
+    public void SetDescricao(string? descricao)
     {
         Descricao = descricao;
         InstitutionContracts();
-        return IsValid;
     }
 
     private void InstitutionContracts()
@@ -52,6 +52,7 @@ public class Institution : Notifiable<Notification>
         AddNotifications(
             new Contract<Notification>()
                 .Requires()
+                .IsNotNull(TipoInstituicaoId, "TipoInstituicaoID", "O tipo de instituição não pode ser nulo")
                 .IsTrue(
                     Apelido?.Length >= 1 && Apelido?.Length <= 40,
                     "Apelido",

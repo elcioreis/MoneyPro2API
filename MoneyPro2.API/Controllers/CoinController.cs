@@ -107,7 +107,6 @@ public class CoinController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         var coin = new Coin(
             model.Apelido,
             model.Simbolo,
@@ -116,7 +115,6 @@ public class CoinController : ControllerBase
             model.Eletronica,
             model.Observacao
         );
-#pragma warning restore CS8604 // Possível argumento de referência nula.
 
         if (!coin.IsValid)
             return BadRequest(new ResultViewModel<List<Notification>>(coin.Notifications.ToList()));
