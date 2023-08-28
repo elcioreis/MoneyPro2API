@@ -259,7 +259,7 @@ public class InstitutionTypeController : ControllerBase
             return StatusCode(
                 500,
                 new ResultViewModel<dynamic>(
-                    "02x10 - Não foi possível excluir o tipo de instituição"
+                    "02x0A - Não foi possível excluir o tipo de instituição"
                 )
             );
         }
@@ -267,7 +267,7 @@ public class InstitutionTypeController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("02x11 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("02x0B - Erro interno no servidor")
             );
         }
     }

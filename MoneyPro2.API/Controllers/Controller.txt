@@ -1,0 +1,8 @@
+Relação numérica dos controllers
+
+01 - UserController.cs
+02 - InstitutionTypeController.cs
+03 - InstitutionController.cs
+04 - CoinController.cs
+
+Todo erro retornado pela API que inicie com 04x diz respeito ao CoinController.

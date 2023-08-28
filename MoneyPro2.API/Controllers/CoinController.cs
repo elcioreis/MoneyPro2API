@@ -111,7 +111,6 @@ public class CoinController : ControllerBase
         var coin = new Coin(
             model.Apelido,
             model.Simbolo,
-            model.Padrao,
             model.MoedaVirtual,
             model.BancoCentral,
             model.Eletronica,
@@ -200,7 +199,6 @@ public class CoinController : ControllerBase
 #pragma warning disable CS8604 // Possível argumento de referência nula.
         coin.SetApelido(model.Apelido);
         coin.SetSimbolo(model.Simbolo);
-        coin.SetPadrao(model.Padrao);
         coin.SetMoedaVirtual(model.MoedaVirtual);
         coin.SetBancoCentral(model.BancoCentral);
         coin.SetEletronica(model.Eletronica);
@@ -251,20 +249,20 @@ public class CoinController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"04x10 - O símbolo '{coin.Simbolo}' já está em uso"
+                        $"04x0A - O símbolo '{coin.Simbolo}' já está em uso"
                     )
                 );
 
             return StatusCode(
                 500,
-                new ResultViewModel<string>("04x11 - Erro ao atualizar a moeda")
+                new ResultViewModel<string>("04x0B - Erro ao atualizar a moeda")
             );
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("04x12 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("04x0C - Erro interno no servidor")
             );
         }
     }
@@ -282,7 +280,7 @@ public class CoinController : ControllerBase
         var coin = await context.Coins.FirstOrDefaultAsync(x => x.MoedaId == id);
 
         if (coin == null)
-            return NotFound(new ResultViewModel<string>("04x13 - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("04x0D - Informação não localizada"));
 
         try
         {
@@ -307,13 +305,74 @@ public class CoinController : ControllerBase
         }
         catch (DbUpdateException)
         {
-            return StatusCode(500, new ResultViewModel<string>("04x14 - Erro ao excluir a moeda"));
+            return StatusCode(500, new ResultViewModel<string>("04x0E - Erro ao excluir a moeda"));
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("04x15 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("04x0F - Erro interno no servidor")
+            );
+        }
+    }
+
+    [Authorize]
+    [HttpPut("v1/coin/setdefault/{id:int}")]
+    public async Task<IActionResult> PutSetDefaultAsync(
+        [FromRoute] int id,
+        [FromServices] MoneyPro2DataContext context
+    )
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
+
+        var newDefault = await context.Coins.FirstOrDefaultAsync(x => x.MoedaId == id);
+
+        if (newDefault == null)
+            return NotFound(new ResultViewModel<string>("04x10 - Informação não localizada"));
+
+        var coins = await context.Coins.Where(x => x.Padrao == true).ToListAsync();
+
+        using var transaction = context.Database.BeginTransaction();
+
+        try
+        {
+            foreach (var coin in coins)
+            {
+                // Remove o "Padrao" de outra moeda qualquer
+                coin.SetPadrao(false);
+                context.Update(coin);
+            }
+
+            // Marca a nova como "Padrao"
+            newDefault.SetPadrao(true);
+            context.Update(newDefault);
+            await context.SaveChangesAsync();
+
+            transaction.Commit();
+
+            return Ok(
+                new ResultViewModel<dynamic>(
+                    new
+                    {
+                        newDefault.MoedaId,
+                        newDefault.Apelido,
+                        newDefault.Simbolo,
+                        newDefault.Padrao,
+                        newDefault.MoedaVirtual,
+                        newDefault.BancoCentral,
+                        newDefault.Eletronica,
+                        newDefault.Observacao
+                    }
+                )
+            );
+        }
+        catch (DbUpdateException)
+        {
+            transaction.Rollback();
+            return StatusCode(
+                500,
+                new ResultViewModel<dynamic>("04x11 - Erro interno no servidor")
             );
         }
     }
