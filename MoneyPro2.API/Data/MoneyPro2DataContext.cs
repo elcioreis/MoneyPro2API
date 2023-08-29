@@ -17,10 +17,7 @@ public class MoneyPro2DataContext : DbContext
     public DbSet<InstitutionType> InstitutionTypes { get; set; } = null!;
     public DbSet<Institution> Institutions { get; set; } = null!;
     public DbSet<Coin> Coins { get; set; } = null!;
-
-    //protected override void OnConfiguring(DbContextOptionsBuilder options) => options.UseSqlServer(
-    //        "Server=localhost;Database=MoneyPro2_Devel;Integrated Security=True;Trust Server Certificate=true"
-    //    );
+    public DbSet<AccountGroup> AccountGroups { get; set; } = null!;
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -31,6 +28,7 @@ public class MoneyPro2DataContext : DbContext
 
         // Sequencias
         modelBuilder.HasSequence<int>("Seq_MoedaID").StartsAt(1).IncrementsBy(1);
+        modelBuilder.HasSequence<int>("Seq_GrupoContaID").StartsAt(1).IncrementsBy(1);
 
         // UserLogin - User
         modelBuilder
@@ -72,10 +70,21 @@ public class MoneyPro2DataContext : DbContext
             .HasConstraintName("FK_Instituicao_TipoInstituicao_TipoInstituicaoId")
             .OnDelete(DeleteBehavior.NoAction);
 
+        // GrupoDeConta - User
+        modelBuilder
+            .Entity<User>()
+            .HasMany(e => e.AccountGroups)
+            .WithOne(e => e.User)
+            .HasForeignKey(e => e.UsuarioId)
+            .IsRequired(false)
+            .HasConstraintName("FK_AccountGroup_User_UsuarioID")
+            .OnDelete(DeleteBehavior.NoAction);
+
         modelBuilder.ApplyConfiguration(new UserMap());
         modelBuilder.ApplyConfiguration(new UserLoginMap());
         modelBuilder.ApplyConfiguration(new InstitutionTypeMap());
         modelBuilder.ApplyConfiguration(new InstitutionMap());
         modelBuilder.ApplyConfiguration(new CoinMap());
+        modelBuilder.ApplyConfiguration(new AccountGroupMap());
     }
 }

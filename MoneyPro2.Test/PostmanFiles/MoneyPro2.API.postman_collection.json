@@ -570,6 +570,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "v1/coin/setdefault/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/coin/setdefault/1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"coin",
+								"setdefault",
+								"1"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},

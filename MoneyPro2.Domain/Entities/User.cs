@@ -32,7 +32,6 @@ public partial class User : Notifiable<Notification>
         UserContracts();
     }
 
-
     public int UserId { get; private set; }
     public string? Username { get; private set; } = string.Empty;
     public string? Nome { get; private set; } = string.Empty;
@@ -46,6 +45,7 @@ public partial class User : Notifiable<Notification>
     public ICollection<UserLogin> UserLogins { get; private set; } = new List<UserLogin>();
     public ICollection<InstitutionType> InstitutionTypes { get; private set; } = new List<InstitutionType>();
     public ICollection<Institution> Institutions { get; private set; } = new List<Institution>();
+    public ICollection<AccountGroup> AccountGroups { get; private set; } = new List<AccountGroup>();
 
     private void UserContracts()
     {

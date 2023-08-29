@@ -16,13 +16,14 @@ public class AccountGroup : Notifiable<Notification>
 
     public int GrupoContaId { get; private set; }
     public int UsuarioId { get; private set; }
+    public User User { get; set; } = null!;
     public string? Apelido { get; private set; } = null!;
     public string? Descricao { get; private set; } = null!;
-    public int Ordem { get; private set; }
-    public bool Ativo { get; private set; } = true;
-    public bool Painel { get; private set; } = false;
-    public bool FluxoDisponivel { get; private set; } = false;
-    public bool MyProperty { get; private set; } = false;
+    public int? Ordem { get; private set; }
+    public bool? Ativo { get; private set; } = true;
+    public bool? Painel { get; private set; } = false;
+    public bool? FluxoDisponivel { get; private set; } = false;
+    public bool? FluxoCredito { get; private set; } = false;
 
     private void AccountGroupContracts()
     {
