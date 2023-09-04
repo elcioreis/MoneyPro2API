@@ -53,9 +53,9 @@ public class InstitutionController : ControllerBase
     }
 
     [Authorize]
-    [HttpGet("v1/institution/{institutionId:int}")]
+    [HttpGet("v1/institution/{id:int}")]
     public async Task<IActionResult> GetByIdAsync(
-        [FromRoute] int institutionId,
+        [FromRoute] int id,
         [FromServices] MoneyPro2DataContext context
     )
     {
@@ -66,9 +66,9 @@ public class InstitutionController : ControllerBase
 
         try
         {
-            var institutions = await context.Institutions
+            var institution = await context.Institutions
                 .AsNoTracking()
-                .Where(x => x.InstituicaoId == institutionId && x.UserId == userid)
+                .Where(x => x.InstituicaoId == id && x.UserId == userid)
                 .Select(
                     x =>
                         new
@@ -80,58 +80,60 @@ public class InstitutionController : ControllerBase
                             x.Ativo
                         }
                 )
-                .OrderBy(x => x.Apelido)
-                .ToListAsync();
+                .FirstOrDefaultAsync();
 
-            return Ok(new ResultViewModel<dynamic>(institutions));
-        }
-        catch (Exception)
-        {
-            return StatusCode(
-                500,
-                new ResultViewModel<dynamic>("03x02 - Erro interno no servidor")
-            );
-        }
-    }
+            if (institution == null)
+                return NotFound(new ResultViewModel<String>("03x02 - Conteúdo não localizado"));
 
-    [Authorize]
-    [HttpGet("v1/institution/institutiontype/{institutionTypeId:int}")]
-    public async Task<IActionResult> GetByTypeIdAsync(
-        [FromRoute] int institutionTypeId,
-        [FromServices] MoneyPro2DataContext context
-    )
-    {
-        int userid = User.GetUserId();
-
-        if (!ModelState.IsValid)
-            return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
-
-        try
-        {
-            var institutions = await context.Institutions
-                .AsNoTracking()
-                .Where(x => x.UserId == userid && x.TipoInstituicaoId == institutionTypeId)
-                .Select(
-                    x =>
-                        new
-                        {
-                            x.InstituicaoId,
-                            x.TipoInstituicaoId,
-                            x.Apelido,
-                            x.Descricao,
-                            x.Ativo
-                        }
-                )
-                .OrderBy(x => x.Apelido)
-                .ToListAsync();
-
-            return Ok(new ResultViewModel<dynamic>(institutions));
+            return Ok(new ResultViewModel<dynamic>(institution));
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
                 new ResultViewModel<dynamic>("03x03 - Erro interno no servidor")
+            );
+        }
+    }
+
+    [Authorize]
+    [HttpGet("v1/institution/institutiontype/{id:int}")]
+    public async Task<IActionResult> GetByTypeIdAsync(
+        [FromRoute] int id,
+        [FromServices] MoneyPro2DataContext context
+    )
+    {
+        int userid = User.GetUserId();
+
+        if (!ModelState.IsValid)
+            return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
+
+        try
+        {
+            var institutions = await context.Institutions
+                .AsNoTracking()
+                .Where(x => x.UserId == userid && x.TipoInstituicaoId == id)
+                .Select(
+                    x =>
+                        new
+                        {
+                            x.InstituicaoId,
+                            x.TipoInstituicaoId,
+                            x.Apelido,
+                            x.Descricao,
+                            x.Ativo
+                        }
+                )
+                .OrderBy(x => x.Apelido)
+                .ToListAsync();
+
+            return Ok(new ResultViewModel<dynamic>(institutions));
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                500,
+                new ResultViewModel<dynamic>("03x04 - Erro interno no servidor")
             );
         }
     }
@@ -191,28 +193,28 @@ public class InstitutionController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"03x04 - O apelido '{institution.Apelido}' já está em uso para este tipo de instituição"
+                        $"03x05 - O apelido '{institution.Apelido}' já está em uso para este tipo de instituição"
                     )
                 );
 
             return StatusCode(
                 500,
-                new ResultViewModel<string>("03x05 - Erro ao cadastrar a instituição")
+                new ResultViewModel<string>("03x06 - Erro ao cadastrar a instituição")
             );
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("03x06 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("03x07 - Erro interno no servidor")
             );
         }
     }
 
     [Authorize]
-    [HttpPut("v1/institution/{institutionId:int}")]
+    [HttpPut("v1/institution/{id:int}")]
     public async Task<IActionResult> PutAsync(
-        [FromRoute] int institutionId,
+        [FromRoute] int id,
         [FromBody] InstitutionViewModel model,
         [FromServices] MoneyPro2DataContext context
     )
@@ -223,12 +225,12 @@ public class InstitutionController : ControllerBase
             return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
 
         var institution = await context.Institutions.FirstOrDefaultAsync(
-            x => x.InstituicaoId == institutionId && x.UserId == userid
+            x => x.InstituicaoId == id && x.UserId == userid
         );
 
         if (institution == null)
         {
-            return NotFound(new ResultViewModel<string>("03x07 - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("03x08 - Conteúdo não localizado"));
         }
 
         institution.SetApelido(model.Apelido);
@@ -270,40 +272,40 @@ public class InstitutionController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"03x08 - O apelido '{institution.Apelido}' já está em uso para este tipo de instituição"
+                        $"03x09 - O apelido '{institution.Apelido}' já está em uso para este tipo de instituição"
                     )
                 );
 
             return StatusCode(
                 500,
-                new ResultViewModel<string>("03x09 - Erro ao atualizar a instituição")
+                new ResultViewModel<string>("03x0A - Erro ao atualizar a instituição")
             );
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("03x0A - Erro interno no servidor")
+                new ResultViewModel<dynamic>("03x0B - Erro interno no servidor")
             );
         }
     }
 
     [Authorize]
-    [HttpDelete("v1/institution/{institutionId:int}")]
+    [HttpDelete("v1/institution/{id:int}")]
     public async Task<IActionResult> DeleteAsync(
-        [FromRoute] int institutionId,
+        [FromRoute] int id,
         [FromServices] MoneyPro2DataContext context
     )
     {
         int userid = User.GetUserId();
 
         var institution = await context.Institutions.FirstOrDefaultAsync(
-            x => x.InstituicaoId == institutionId && x.UserId == userid
+            x => x.InstituicaoId == id && x.UserId == userid
         );
 
         if (institution == null)
         {
-            return NotFound(new ResultViewModel<string>("03x0B - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("03x0C - Conteúdo não localizado"));
         }
 
         try
@@ -328,14 +330,14 @@ public class InstitutionController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<string>("03x0C - Erro ao excluir a instituição")
+                new ResultViewModel<string>("03x0D - Erro ao excluir a instituição")
             );
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("03x0D - Erro interno no servidor")
+                new ResultViewModel<dynamic>("03x0E - Erro interno no servidor")
             );
         }
     }

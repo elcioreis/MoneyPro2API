@@ -61,7 +61,7 @@ public class Coin : Notifiable<Notification>
         Padrao = padrao;
     }
 
-    public void SetMoedaVirtual(string moedaVirtual)
+    public void SetMoedaVirtual(string? moedaVirtual)
     {
         if (moedaVirtual?.ToLower() == "s")
             MoedaVirtual = true;
@@ -89,13 +89,13 @@ public class Coin : Notifiable<Notification>
         CoinContracts();
     }
 
-    public void SetEletronica(string eletronica)
+    public void SetEletronica(string? eletronica)
     {
         Eletronica = eletronica;
         CoinContracts();
     }
 
-    public void SetObservacao(string observacao)
+    public void SetObservacao(string? observacao)
     {
         Observacao = observacao;
         CoinContracts();
