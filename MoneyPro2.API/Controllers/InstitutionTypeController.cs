@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using MoneyPro2.API.Data;
 using MoneyPro2.API.Extensions;
 using MoneyPro2.API.ViewModels;
-using MoneyPro2.API.ViewModels.InstitutionType;
+using MoneyPro2.API.ViewModels.Institution;
 using MoneyPro2.Domain.Entities;
 
 namespace MoneyPro2.API.Controllers;
@@ -80,7 +80,7 @@ public class InstitutionTypeController : ControllerBase
             }
             else
             {
-                return NotFound(new ResultViewModel<string>("02x02 - Conteúdo inexistente"));
+                return NotFound(new ResultViewModel<string>("02x02 - Conteúdo não localizado"));
             }
         }
         catch (Exception)
@@ -104,9 +104,7 @@ public class InstitutionTypeController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         var institutionType = new InstitutionType(userid, model.Apelido, model.Descricao);
-#pragma warning restore CS8604 // Possível argumento de referência nula.
 
         if (!institutionType.IsValid)
         {
@@ -159,12 +157,10 @@ public class InstitutionTypeController : ControllerBase
         );
 
         if (institutionType == null)
-            return NotFound(new ResultViewModel<string>("02x05 - Conteúdo inexistente"));
+            return NotFound(new ResultViewModel<string>("02x05 - Conteúdo não localizado"));
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         institutionType.SetApelido(model.Apelido);
         institutionType.SetDescricao(model.Descricao);
-#pragma warning restore CS8604 // Possível argumento de referência nula.
 
         if (!institutionType.IsValid)
         {
@@ -235,7 +231,7 @@ public class InstitutionTypeController : ControllerBase
         );
 
         if (institutionType == null)
-            return NotFound(new ResultViewModel<string>("02x09 - Conteúdo inexistente"));
+            return NotFound(new ResultViewModel<string>("02x09 - Conteúdo não localizado"));
 
         try
         {

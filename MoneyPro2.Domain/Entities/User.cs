@@ -14,7 +14,7 @@ public partial class User : Notifiable<Notification>
 
     public User() { }
 
-    public User(string username, string nome, string email, string cpf, string senha)
+    public User(string? username, string? nome, string? email, string? cpf, string? senha)
     {
         UserId = 0;
         if (!string.IsNullOrEmpty(username))
@@ -32,20 +32,20 @@ public partial class User : Notifiable<Notification>
         UserContracts();
     }
 
-
     public int UserId { get; private set; }
-    public string Username { get; private set; } = string.Empty;
-    public string Nome { get; private set; } = string.Empty;
-    public Email Email { get; private set; } = new("");
-    public bool EmailVerificado { get; private set; } = false;
-    public CPF CPF { get; private set; } = new("");
+    public string? Username { get; private set; } = string.Empty;
+    public string? Nome { get; private set; } = string.Empty;
+    public Email? Email { get; private set; } = new("");
+    public bool? EmailVerificado { get; private set; } = false;
+    public CPF? CPF { get; private set; } = new("");
     [JsonIgnore]
-    public string Senha { get; private set; } = string.Empty;
+    public string? Senha { get; private set; } = string.Empty;
     [JsonIgnore]
-    public string Criptografada { get; set; } = string.Empty;
+    public string? Criptografada { get; set; } = string.Empty;
     public ICollection<UserLogin> UserLogins { get; private set; } = new List<UserLogin>();
     public ICollection<InstitutionType> InstitutionTypes { get; private set; } = new List<InstitutionType>();
     public ICollection<Institution> Institutions { get; private set; } = new List<Institution>();
+    public ICollection<AccountGroup> AccountGroups { get; private set; } = new List<AccountGroup>();
 
     private void UserContracts()
     {

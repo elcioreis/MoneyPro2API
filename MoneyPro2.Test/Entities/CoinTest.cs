@@ -1,6 +1,6 @@
 ﻿using MoneyPro2.Domain.Entities;
 
-namespace MoneyPro2.Test.Models;
+namespace MoneyPro2.Test.Entities;
 
 [TestClass]
 public class CoinTest
@@ -9,11 +9,9 @@ public class CoinTest
     public readonly string _simbolo = "R$";
     public readonly string _moedaVirtualSim = "S";
     public readonly string _moedaVirtualNao = "N";
-#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
-    public readonly string _bancoCentral = null;
-    public readonly string _eletronica = null;
-    public readonly string _observacao = null;
-#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+    public readonly string? _bancoCentral = null;
+    public readonly string? _eletronica = null;
+    public readonly string? _observacao = null;
 
     [TestMethod]
     [TestCategory("Coin")]
@@ -81,11 +79,8 @@ public class CoinTest
     [TestCategory("Coin")]
     public void Moeda_com_apelido_nulo_deve_falhar()
     {
-#pragma warning disable CS8600 // Conversão de literal nula ou possível valor nulo em tipo não anulável.
-        string nullApelido = null;
-#pragma warning restore CS8600 // Conversão de literal nula ou possível valor nulo em tipo não anulável.
+        string? nullApelido = null;
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         var coin = new Coin(
             nullApelido,
             _simbolo,
@@ -94,7 +89,6 @@ public class CoinTest
             _eletronica,
             _observacao
         );
-#pragma warning restore CS8604 // Possível argumento de referência nula.
         Assert.IsFalse(coin.IsValid);
     }
 
@@ -118,11 +112,8 @@ public class CoinTest
     [TestCategory("Coin")]
     public void Moeda_com_simbolo_nulo_deve_falhar()
     {
-#pragma warning disable CS8600 // Conversão de literal nula ou possível valor nulo em tipo não anulável.
-        string nullSimbolo = null;
-#pragma warning restore CS8600 // Conversão de literal nula ou possível valor nulo em tipo não anulável.
+        string? nullSimbolo = null;
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         var coin = new Coin(
             _apelido,
             nullSimbolo,
@@ -131,7 +122,6 @@ public class CoinTest
             _eletronica,
             _observacao
         );
-#pragma warning restore CS8604 // Possível argumento de referência nula.
         Assert.IsFalse(coin.IsValid);
     }
 
@@ -155,11 +145,8 @@ public class CoinTest
     [TestCategory("Coin")]
     public void Moeda_com_moedaVirtual_nula_deve_falhar()
     {
-#pragma warning disable CS8600 // Conversão de literal nula ou possível valor nulo em tipo não anulável.
-        string nullMoedaVirtual = null;
-#pragma warning restore CS8600 // Conversão de literal nula ou possível valor nulo em tipo não anulável.
+        string? nullMoedaVirtual = null;
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         var coin = new Coin(
             _apelido,
             _simbolo,
@@ -168,7 +155,6 @@ public class CoinTest
             _eletronica,
             _observacao
         );
-#pragma warning restore CS8604 // Possível argumento de referência nula.
 
         Assert.IsFalse(coin.IsValid);
     }

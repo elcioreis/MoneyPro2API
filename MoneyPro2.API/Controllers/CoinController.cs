@@ -70,7 +70,7 @@ public class CoinController : ControllerBase
                 .FirstOrDefaultAsync();
 
             if (coin == null)
-                return NotFound(new ResultViewModel<string>("04x02 - Conteúdo inexistente"));
+                return NotFound(new ResultViewModel<string>("04x02 - Conteúdo não localizado"));
 
             return Ok(
                 new ResultViewModel<dynamic>(
@@ -107,7 +107,6 @@ public class CoinController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         var coin = new Coin(
             model.Apelido,
             model.Simbolo,
@@ -116,7 +115,6 @@ public class CoinController : ControllerBase
             model.Eletronica,
             model.Observacao
         );
-#pragma warning restore CS8604 // Possível argumento de referência nula.
 
         if (!coin.IsValid)
             return BadRequest(new ResultViewModel<List<Notification>>(coin.Notifications.ToList()));
@@ -196,14 +194,12 @@ public class CoinController : ControllerBase
         if (coin == null)
             return NotFound(new ResultViewModel<string>("04x08 - Informação não localizada"));
 
-#pragma warning disable CS8604 // Possível argumento de referência nula.
         coin.SetApelido(model.Apelido);
         coin.SetSimbolo(model.Simbolo);
         coin.SetMoedaVirtual(model.MoedaVirtual);
         coin.SetBancoCentral(model.BancoCentral);
         coin.SetEletronica(model.Eletronica);
         coin.SetObservacao(model.Observacao);
-#pragma warning restore CS8604 // Possível argumento de referência nula.
 
         if (!coin.IsValid)
             return BadRequest(new ResultViewModel<List<Notification>>(coin.Notifications.ToList()));

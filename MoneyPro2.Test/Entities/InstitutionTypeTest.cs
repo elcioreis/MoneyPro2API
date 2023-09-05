@@ -1,6 +1,6 @@
 ﻿using MoneyPro2.Domain.Entities;
 
-namespace MoneyPro2.Test.Models;
+namespace MoneyPro2.Test.Entities;
 [TestClass]
 public class InstitutionTypeTest
 {
@@ -9,16 +9,26 @@ public class InstitutionTypeTest
     private readonly string _descricao = "Instituições bancárias";
 
     [TestMethod]
-    public void Tipo_De_Instituicao_Com_Apelido_Nulo_Deve_Falhar()
+    [TestCategory("InstitutionType")]
+
+    public void Tipo_de_instituicao_valida_deve_passar()
     {
-#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
+        var institutionType = new InstitutionType(_userId, _apelido, _descricao);
+        Assert.IsTrue(institutionType.IsValid);
+    }
+
+    [TestMethod]
+    [TestCategory("InstitutionType")]
+    public void Tipo_de_instituicao_com_apelido_nulo_deve_falhar()
+    {
         var institutionType = new InstitutionType(_userId, null, _descricao);
-#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(institutionType.IsValid);
     }
 
     [TestMethod]
-    public void Tipo_De_Instituicao_Com_Apelido_Invalido_Deve_Falhar()
+    [TestCategory("InstitutionType")]
+
+    public void Tipo_de_instituicao_com_apelido_invalido_deve_falhar()
     {
         var badApelido = new string('m', 120);
         var institutionType = new InstitutionType(_userId, badApelido, _descricao);
@@ -26,31 +36,29 @@ public class InstitutionTypeTest
     }
 
     [TestMethod]
-    public void Tipo_De_Instituicao_Com_Descricao_Nula_Deve_Falhar()
+    [TestCategory("InstitutionType")]
+
+    public void Tipo_de_instituicao_com_descricao_nula_deve_falhar()
     {
-#pragma warning disable CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         var institutionType = new InstitutionType(_userId, _apelido, null);
-#pragma warning restore CS8625 // Não é possível converter um literal nulo em um tipo de referência não anulável.
         Assert.IsFalse(institutionType.IsValid);
     }
 
     [TestMethod]
-    public void Tipo_De_Instituicao_Com_Descricao_Invalida_Deve_Falhar()
+    [TestCategory("InstitutionType")]
+
+    public void Tipo_de_instituicao_com_descricao_invalida_deve_falhar()
     {
         var badDescricao = new string('m', 120);
         var institutionType = new InstitutionType(_userId, _apelido, badDescricao);
         Assert.IsFalse(institutionType.IsValid);
     }
 
-    [TestMethod]
-    public void Tipo_De_Instituicao_Valida_Deve_Passar()
-    {
-        var institutionType = new InstitutionType(_userId, _apelido, _descricao);
-        Assert.IsTrue(institutionType.IsValid);
-    }
 
     [TestMethod]
-    public void Tipo_De_Insituicao_Com_Apelido_Alterado_Invalido_Deve_Falhar()
+    [TestCategory("InstitutionType")]
+
+    public void Tipo_de_insituicao_com_apelido_alterado_invalido_deve_falhar()
     {
         var institutionType = new InstitutionType(_userId, _apelido, _descricao);
         institutionType.SetApelido("");
@@ -58,7 +66,9 @@ public class InstitutionTypeTest
     }
 
     [TestMethod]
-    public void Tipo_De_Insituicao_Com_Descricao_Alterada_Invalida_Deve_Falhar()
+    [TestCategory("InstitutionType")]
+
+    public void Tipo_de_insituicao_com_descricao_alterada_invalida_deve_falhar()
     {
         var institutionType = new InstitutionType(_userId, _apelido, _descricao);
         institutionType.SetDescricao("");
