@@ -25,6 +25,18 @@ public class AccountGroup : Notifiable<Notification>
     public bool? FluxoDisponivel { get; private set; } = false;
     public bool? FluxoCredito { get; private set; } = false;
 
+    public void SetApelido(string? apelido)
+    {
+        Apelido = apelido;
+        AccountGroupContracts();
+    }
+
+    public void SetDescricao(string? descricao)
+    {
+        Descricao = descricao;
+        AccountGroupContracts();
+    }
+
     private void AccountGroupContracts()
     {
         Clear();
