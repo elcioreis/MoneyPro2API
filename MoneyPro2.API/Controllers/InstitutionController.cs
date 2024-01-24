@@ -153,8 +153,8 @@ public class InstitutionController : ControllerBase
         var institution = new Institution(
             userid,
             model.TipoInstituicaoId,
-            model.Apelido,
-            model.Descricao
+            model.Apelido?.Trim(),
+            model.Descricao?.Trim()
         );
 
         if (!institution.IsValid)
@@ -233,8 +233,9 @@ public class InstitutionController : ControllerBase
             return NotFound(new ResultViewModel<string>("03x08 - Conteúdo não localizado"));
         }
 
-        institution.SetApelido(model.Apelido);
-        institution.SetDescricao(model.Descricao);
+        institution.SetTipoInsituicao(model.TipoInstituicaoId);
+        institution.SetApelido(model.Apelido?.Trim());
+        institution.SetDescricao(model.Descricao?.Trim());
 
         if (!institution.IsValid)
         {

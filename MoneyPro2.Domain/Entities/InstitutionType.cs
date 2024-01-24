@@ -38,6 +38,18 @@ public class InstitutionType : Notifiable<Notification>
         InstitutionTypeContracts();
     }
 
+    public void SetInactive()
+    {
+        Ativo = false;
+        InstitutionTypeContracts();
+    }
+
+    public void SetActive()
+    {
+        Ativo = true;
+        InstitutionTypeContracts();
+    }
+
     private void InstitutionTypeContracts()
     {
         Clear();

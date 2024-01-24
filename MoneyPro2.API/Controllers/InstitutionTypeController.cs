@@ -104,7 +104,7 @@ public class InstitutionTypeController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
 
-        var institutionType = new InstitutionType(userid, model.Apelido, model.Descricao);
+        var institutionType = new InstitutionType(userid, model.Apelido?.Trim(), model.Descricao?.Trim());
 
         if (!institutionType.IsValid)
         {
@@ -159,8 +159,8 @@ public class InstitutionTypeController : ControllerBase
         if (institutionType == null)
             return NotFound(new ResultViewModel<string>("02x05 - Conteúdo não localizado"));
 
-        institutionType.SetApelido(model.Apelido);
-        institutionType.SetDescricao(model.Descricao);
+        institutionType.SetApelido(model.Apelido?.Trim());
+        institutionType.SetDescricao(model.Descricao?.Trim());
 
         if (!institutionType.IsValid)
         {
@@ -264,6 +264,116 @@ public class InstitutionTypeController : ControllerBase
             return StatusCode(
                 500,
                 new ResultViewModel<dynamic>("02x0B - Erro interno no servidor")
+            );
+        }
+    }
+
+    [Authorize]
+    [HttpPut("v1/institutiontype/inactivate/{id:int}")]
+    public async Task<IActionResult> PutInactivateAsync(
+        [FromRoute] int id,
+        [FromServices] MoneyPro2DataContext context
+    )
+    {
+        int userid = User.GetUserId();
+
+        if (!ModelState.IsValid)
+            return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
+
+        var institutionType = context.InstitutionTypes.FirstOrDefault(
+            x => x.TipoInstituicaoId == id && x.UserId == userid
+        );
+
+        if (institutionType == null)
+            return NotFound(new ResultViewModel<string>("02x0C - Conteúdo não localizado"));
+
+        institutionType.SetInactive();
+
+        try
+        {
+            context.InstitutionTypes.Update(institutionType);
+            await context.SaveChangesAsync();
+            return Ok(
+                new ResultViewModel<dynamic>(
+                    new
+                    {
+                        institutionType.TipoInstituicaoId,
+                        institutionType.Apelido,
+                        institutionType.Descricao,
+                        institutionType.Ativo
+                    }
+                )
+            );
+        }
+        catch (DbUpdateException)
+        {
+            return StatusCode(
+                500,
+                new ResultViewModel<dynamic>(
+                    "02x0D - Não foi possível inativar o tipo de instituição"
+                )
+            );
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                500,
+                new ResultViewModel<dynamic>("02x10 - Erro interno no servidor")
+            );
+        }
+    }
+
+    [Authorize]
+    [HttpPut("v1/institutiontype/activate/{id:int}")]
+    public async Task<IActionResult> PutActivateAsync(
+        [FromRoute] int id,
+        [FromServices] MoneyPro2DataContext context
+    )
+    {
+        int userid = User.GetUserId();
+
+        if (!ModelState.IsValid)
+            return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
+
+        var institutionType = context.InstitutionTypes.FirstOrDefault(
+            x => x.TipoInstituicaoId == id && x.UserId == userid
+        );
+
+        if (institutionType == null)
+            return NotFound(new ResultViewModel<string>("02x11 - Conteúdo não localizado"));
+
+        institutionType.SetActive();
+
+        try
+        {
+            context.InstitutionTypes.Update(institutionType);
+            await context.SaveChangesAsync();
+            return Ok(
+                new ResultViewModel<dynamic>(
+                    new
+                    {
+                        institutionType.TipoInstituicaoId,
+                        institutionType.Apelido,
+                        institutionType.Descricao,
+                        institutionType.Ativo
+                    }
+                )
+            );
+        }
+        catch (DbUpdateException)
+        {
+            return StatusCode(
+                500,
+                new ResultViewModel<dynamic>(
+                    "02x12 - Não foi possível ativar o tipo de instituição"
+                )
+            );
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                500,
+                new ResultViewModel<dynamic>("02x13 - Erro interno no servidor")
             );
         }
     }

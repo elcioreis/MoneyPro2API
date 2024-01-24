@@ -475,3 +475,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Exclusao da pasta de migracao do EntityFramework
+MoneyPro2.API/Migrations

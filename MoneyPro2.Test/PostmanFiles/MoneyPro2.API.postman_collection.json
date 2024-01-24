@@ -1,10 +1,10 @@
 {
 	"info": {
-		"_postman_id": "e9637132-1dd1-493e-a827-93e8ad8d2a79",
+		"_postman_id": "e3b28ba3-4004-414c-b5b5-8cdcbd060063",
 		"name": "MoneyPro2.API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15533135",
-		"_collection_link": "https://warped-crater-338486.postman.co/workspace/Team-Workspace~378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-e9637132-1dd1-493e-a827-93e8ad8d2a79?action=share&source=collection_link&creator=15533135"
+		"_collection_link": "https://warped-crater-338486.postman.co/workspace/378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-e3b28ba3-4004-414c-b5b5-8cdcbd060063?action=share&source=collection_link&creator=15533135"
 	},
 	"item": [
 		{
@@ -87,7 +87,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7278/v1/institution/institutiontype/1",
+							"raw": "https://localhost:7278/v1/institution/institutiontype/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -97,7 +97,7 @@
 								"v1",
 								"institution",
 								"institutiontype",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -120,7 +120,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipoInstituicaoId\": \"1\",\r\n    \"apelido\": \"Bradesco\",\r\n    \"descricao\": \"Banco Bradesco SA\"\r\n}",
+							"raw": "{\r\n    \"tipoInstituicaoId\": \"2\",\r\n    \"apelido\": \"Caixa\",\r\n    \"descricao\": \"Caixa Econômica SA\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -159,7 +159,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"tipoInstituicaoId\": \"1\",\r\n    \"apelido\": \"C6 Bank\",\r\n    \"descricao\": \"C6 Bank SA\"\r\n}",
+							"raw": "{\r\n    \"tipoInstituicaoId\": \"1\",\r\n    \"apelido\": \"Zênite\",\r\n    \"descricao\": \"Zênite Engenharia Ltda\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -167,7 +167,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7278/v1/institution/11",
+							"raw": "https://localhost:7278/v1/institution/3",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -176,7 +176,7 @@
 							"path": [
 								"v1",
 								"institution",
-								"11"
+								"3"
 							]
 						}
 					},
@@ -270,7 +270,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7278/v1/institutiontype/1",
+							"raw": "https://localhost:7278/v1/institutiontype/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -279,7 +279,7 @@
 							"path": [
 								"v1",
 								"institutiontype",
-								"1"
+								"2"
 							]
 						}
 					},
@@ -302,7 +302,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"apelido\":\"Empregador\",\r\n    \"descricao\":\"Empresa empregadora\"\r\n}",
+							"raw": "{\r\n    \"apelido\":\"Teste\",\r\n    \"descricao\":\"Teste\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -341,7 +341,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"apelido\":\"Bancos\",\r\n    \"descricao\":\"Instituições bancárias\"\r\n}",
+							"raw": "{\r\n    \"apelido\": \"Bancos\",\r\n    \"descricao\": \"Instituições bancárias\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -349,7 +349,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7278/v1/institutiontype/1",
+							"raw": "https://localhost:7278/v1/institutiontype/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -358,7 +358,89 @@
 							"path": [
 								"v1",
 								"institutiontype",
-								"1"
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institutiontype/activate/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\": \"Banco\",\r\n    \"descricao\": \"Instituições bancárias\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7278/v1/institutiontype/activate/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institutiontype",
+								"activate",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institutiontype/inactivate/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\": \"Banco\",\r\n    \"descricao\": \"Instituições bancárias\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7278/v1/institutiontype/inactivate/6",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institutiontype",
+								"inactivate",
+								"6"
 							]
 						}
 					},
@@ -380,7 +462,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:7278/v1/institutiontype/3",
+							"raw": "https://localhost:7278/v1/institutiontype/5",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -389,7 +471,7 @@
 							"path": [
 								"v1",
 								"institutiontype",
-								"3"
+								"5"
 							]
 						}
 					},
@@ -425,6 +507,37 @@
 							"path": [
 								"v1",
 								"coin"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/coin/default",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/coin/default",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"coin",
+								"default"
 							]
 						}
 					},
@@ -478,7 +591,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Apelido\":\"Libra\",\r\n    \"Simbolo\":\"£\",\r\n    \"Padrao\":\"N\",\r\n    \"MoedaVirtual\":\"N\",\r\n    \"Observacao\":\"Libra esterlina\"\r\n}",
+							"raw": "{\r\n    \"Apelido\":\"Libra\",\r\n    \"Simbolo\":\"£\",\r\n    \"MoedaVirtual\":\"N\",\r\n    \"Observacao\":\"Libra Esterlina\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -517,7 +630,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"Apelido\":\"Dolar\",\r\n    \"Simbolo\":\"US$\",\r\n    \"Padrao\":\"N\",\r\n    \"MoedaVirtual\":\"N\",\r\n    \"Observacao\":\"Dólar dos Estados Unidos da América\"\r\n}",
+							"raw": "{\r\n    \"Apelido\":\"Dolar   \",\r\n    \"Simbolo\":\"US$\",\r\n    \"Padrao\":\"N\",\r\n    \"MoedaVirtual\":\"N\",\r\n    \"Observacao\":\"Dólar dos Estados Unidos da América\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -525,7 +638,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:7278/v1/coin/4",
+							"raw": "https://localhost:7278/v1/coin/2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -534,38 +647,7 @@
 							"path": [
 								"v1",
 								"coin",
-								"4"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "v1/coin/{id}",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{MoneyPro2.MeuToken}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:7278/v1/coin/7",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "7278",
-							"path": [
-								"v1",
-								"coin",
-								"7"
+								"2"
 							]
 						}
 					},
@@ -602,6 +684,37 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "v1/coin/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:7278/v1/coin/7",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"coin",
+								"7"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -612,7 +725,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"jose\",\r\n    \"senha\": \"ABCabc123!@#\"\r\n}",
+					"raw": "{\r\n    \"username\": \"jose\",\r\n    \"senha\": \"Senha@1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -641,7 +754,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"username\": \"jose\",\r\n    \"email\":\"jose.silva@gmail.com\",\r\n    \"nome\": \"José da Silva\",\r\n    \"cpf\":\"509.254.178-40\",\r\n    \"senha\": \"ABCabc123!@#\"\r\n}",
+					"raw": "{\r\n    \"username\": \"jose\",\r\n    \"email\":\"jose.silva@gmail.com\",\r\n    \"nome\": \"Jose da Silva\",\r\n    \"cpf\":\"23637899035\",\r\n    \"senha\": \"Senha@1234\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -662,6 +775,32 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "MoneyPro2.MeuToken",
+			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwidW5pcXVlX25hbWUiOiJKb2FvIGRhIFNpbHZhIiwiZW1haWwiOiJqb2FvLnNpbHZhQGdtYWlsLmNvbSIsIm5iZiI6MTcwNjExNjEwOCwiZXhwIjoxNzA2MTU5MzA4LCJpYXQiOjE3MDYxMTYxMDh9.iGDYvemNEwaPDH1sJ73TzCMwRtlMPlebZPD6Iyw3opE"
 		}
 	]
 }

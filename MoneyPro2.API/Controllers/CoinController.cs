@@ -53,6 +53,33 @@ public class CoinController : ControllerBase
     }
 
     [Authorize]
+    [HttpGet("v1/coin/default")]
+    public async Task<IActionResult> GetDefaultAsync([FromServices] MoneyPro2DataContext context)
+    {
+        if (!ModelState.IsValid)
+            return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
+
+        try
+        {
+            var coin = await context.Coins
+                .AsNoTracking()
+                .FirstOrDefaultAsync(x => x.Padrao == true);
+
+            if (coin == null)
+                return NotFound(new ResultViewModel<string>("04x02 - Conteúdo não localizado"));
+
+            return Ok(new ResultViewModel<dynamic>(coin));
+        }
+        catch (Exception)
+        {
+            return StatusCode(
+                500,
+                new ResultViewModel<dynamic>("04x03 - Erro interno no servidor")
+            );
+        }
+    }
+
+    [Authorize]
     [HttpGet("v1/coin/{id:int}")]
     public async Task<IActionResult> GetByIdAsync(
         [FromRoute] int id,
@@ -70,7 +97,7 @@ public class CoinController : ControllerBase
                 .FirstOrDefaultAsync();
 
             if (coin == null)
-                return NotFound(new ResultViewModel<string>("04x02 - Conteúdo não localizado"));
+                return NotFound(new ResultViewModel<string>("04x04 - Conteúdo não localizado"));
 
             return Ok(
                 new ResultViewModel<dynamic>(
@@ -92,7 +119,7 @@ public class CoinController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("04x03 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("04x05 - Erro interno no servidor")
             );
         }
     }
@@ -107,13 +134,16 @@ public class CoinController : ControllerBase
         if (!ModelState.IsValid)
             return BadRequest(new ResultViewModel<string>(ModelState.GetErros()));
 
+        var coins = await context.Coins.CountAsync();
+
         var coin = new Coin(
-            model.Apelido,
-            model.Simbolo,
+            model.Apelido?.Trim(),
+            model.Simbolo?.Trim(),
+            coins == 0,
             model.MoedaVirtual,
             model.BancoCentral,
             model.Eletronica,
-            model.Observacao
+            model.Observacao?.Trim()
         );
 
         if (!coin.IsValid)
@@ -149,7 +179,7 @@ public class CoinController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"04x04 - O apelido '{coin.Apelido}' já está em uso"
+                        $"04x06 - O apelido '{coin.Apelido}' já está em uso"
                     )
                 );
 
@@ -160,20 +190,20 @@ public class CoinController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"04x05 - O símbolo '{coin.Simbolo}' já está em uso"
+                        $"04x07 - O símbolo '{coin.Simbolo}' já está em uso"
                     )
                 );
 
             return StatusCode(
                 500,
-                new ResultViewModel<string>("04x06 - Erro ao cadastrar a moeda")
+                new ResultViewModel<string>("04x08 - Erro ao cadastrar a moeda")
             );
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("04x07 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("04x09 - Erro interno no servidor")
             );
         }
     }
@@ -192,14 +222,14 @@ public class CoinController : ControllerBase
         var coin = await context.Coins.FirstOrDefaultAsync(x => x.MoedaId == id);
 
         if (coin == null)
-            return NotFound(new ResultViewModel<string>("04x08 - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("04x0A - Informação não localizada"));
 
-        coin.SetApelido(model.Apelido);
-        coin.SetSimbolo(model.Simbolo);
+        coin.SetApelido(model.Apelido?.Trim());
+        coin.SetSimbolo(model.Simbolo?.Trim());
         coin.SetMoedaVirtual(model.MoedaVirtual);
         coin.SetBancoCentral(model.BancoCentral);
         coin.SetEletronica(model.Eletronica);
-        coin.SetObservacao(model.Observacao);
+        coin.SetObservacao(model.Observacao?.Trim());
 
         if (!coin.IsValid)
             return BadRequest(new ResultViewModel<List<Notification>>(coin.Notifications.ToList()));
@@ -234,7 +264,7 @@ public class CoinController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"04x09 - O apelido '{coin.Apelido}' já está em uso"
+                        $"04x0B - O apelido '{coin.Apelido}' já está em uso"
                     )
                 );
 
@@ -245,20 +275,20 @@ public class CoinController : ControllerBase
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
-                        $"04x0A - O símbolo '{coin.Simbolo}' já está em uso"
+                        $"04x0C - O símbolo '{coin.Simbolo}' já está em uso"
                     )
                 );
 
             return StatusCode(
                 500,
-                new ResultViewModel<string>("04x0B - Erro ao atualizar a moeda")
+                new ResultViewModel<string>("04x0D - Erro ao atualizar a moeda")
             );
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("04x0C - Erro interno no servidor")
+                new ResultViewModel<dynamic>("04x0E - Erro interno no servidor")
             );
         }
     }
@@ -276,7 +306,7 @@ public class CoinController : ControllerBase
         var coin = await context.Coins.FirstOrDefaultAsync(x => x.MoedaId == id);
 
         if (coin == null)
-            return NotFound(new ResultViewModel<string>("04x0D - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("04x0F - Informação não localizada"));
 
         try
         {
@@ -301,13 +331,13 @@ public class CoinController : ControllerBase
         }
         catch (DbUpdateException)
         {
-            return StatusCode(500, new ResultViewModel<string>("04x0E - Erro ao excluir a moeda"));
+            return StatusCode(500, new ResultViewModel<string>("04x10 - Erro ao excluir a moeda"));
         }
         catch (Exception)
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("04x0F - Erro interno no servidor")
+                new ResultViewModel<dynamic>("04x12 - Erro interno no servidor")
             );
         }
     }
@@ -325,7 +355,7 @@ public class CoinController : ControllerBase
         var newDefault = await context.Coins.FirstOrDefaultAsync(x => x.MoedaId == id);
 
         if (newDefault == null)
-            return NotFound(new ResultViewModel<string>("04x10 - Informação não localizada"));
+            return NotFound(new ResultViewModel<string>("04x13 - Informação não localizada"));
 
         var coins = await context.Coins.Where(x => x.Padrao == true).ToListAsync();
 
@@ -368,7 +398,7 @@ public class CoinController : ControllerBase
             transaction.Rollback();
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("04x11 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("04x14 - Erro interno no servidor")
             );
         }
     }

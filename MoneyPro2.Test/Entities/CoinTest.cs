@@ -7,6 +7,7 @@ public class CoinTest
 {
     public readonly string _apelido = "Real";
     public readonly string _simbolo = "R$";
+    public readonly bool _padrao = true;
     public readonly string _moedaVirtualSim = "S";
     public readonly string _moedaVirtualNao = "N";
     public readonly string? _bancoCentral = null;
@@ -20,6 +21,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualSim,
             _bancoCentral,
             _eletronica,
@@ -35,6 +37,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -51,6 +54,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             bancoCentral,
             _eletronica,
@@ -67,6 +71,7 @@ public class CoinTest
         var coin = new Coin(
             badApelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -84,6 +89,7 @@ public class CoinTest
         var coin = new Coin(
             nullApelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -100,6 +106,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             badSimbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -117,6 +124,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             nullSimbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -133,6 +141,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             badMoedaVirtual,
             _bancoCentral,
             _eletronica,
@@ -150,6 +159,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             nullMoedaVirtual,
             _bancoCentral,
             _eletronica,
@@ -167,6 +177,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             badCancoCentral,
             _eletronica,
@@ -183,6 +194,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             badCancoCentral,
             _eletronica,
@@ -199,6 +211,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             badCancoCentral,
             _eletronica,
@@ -215,6 +228,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -231,6 +245,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             badEletronica,
@@ -246,6 +261,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -263,6 +279,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -280,6 +297,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -297,6 +315,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -314,6 +333,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,
@@ -331,6 +351,7 @@ public class CoinTest
         var coin = new Coin(
             _apelido,
             _simbolo,
+            _padrao,
             _moedaVirtualNao,
             _bancoCentral,
             _eletronica,

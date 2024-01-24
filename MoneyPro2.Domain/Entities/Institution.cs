@@ -31,6 +31,7 @@ public class Institution : Notifiable<Notification>
             TipoInstituicaoId = idTipo;
         else
             TipoInstituicaoId = null;
+
         InstitutionContracts();
     }
 

@@ -74,4 +74,23 @@ public class InstitutionTypeTest
         institutionType.SetDescricao("");
         Assert.IsFalse(institutionType.IsValid);
     }
+
+    [TestMethod]
+    [TestCategory("InstitutionType")]
+    public void Inativar_Tipo_de_instituicao_deve_deixar_inativa()
+    {
+        var institutionType = new InstitutionType(_userId, _apelido, _descricao);
+        institutionType.SetInactive();
+        Assert.IsTrue(institutionType.IsValid && institutionType.Ativo == false);
+    }
+
+    [TestMethod]
+    [TestCategory("InstitutionType")]
+    public void Ativar_Tipo_de_instituicao_deve_deixar_ativa()
+    {
+        var institutionType = new InstitutionType(_userId, _apelido, _descricao);
+        institutionType.SetInactive();
+        institutionType.SetActive();
+        Assert.IsTrue(institutionType.IsValid && institutionType.Ativo == true);
+    }
 }

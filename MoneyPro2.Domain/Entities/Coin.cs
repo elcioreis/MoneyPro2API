@@ -10,6 +10,7 @@ public class Coin : Notifiable<Notification>
     public Coin(
         string? apelido,
         string? simbolo,
+        bool padrao,
         string? moedaVirtual,
         string? bancoCentral,
         string? eletronica,
@@ -18,7 +19,7 @@ public class Coin : Notifiable<Notification>
     {
         SetApelido(apelido);
         SetSimbolo(simbolo);
-        Padrao = false;
+        Padrao = padrao;
 
         if (moedaVirtual?.ToLower() == "s")
             MoedaVirtual = true;
