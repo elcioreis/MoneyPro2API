@@ -187,10 +187,9 @@ public class InstitutionTypeController : ControllerBase
         }
         catch (DbUpdateException ex)
         {
-            if (
-                ex.InnerException != null
-                && ex.InnerException.Message.ToLower().Contains("ix_tipoinstituicao_userid_apelido")
-            )
+            var msg = ex.InnerException?.Message.ToLower() ?? String.Empty;
+
+            if (msg.Contains("ix_tipoinstituicao_userid_apelido"))
                 return StatusCode(
                     500,
                     new ResultViewModel<string>(
@@ -249,13 +248,24 @@ public class InstitutionTypeController : ControllerBase
                 )
             );
         }
-        catch (DbUpdateException)
+        catch (DbUpdateException ex)
         {
-            ;
+            var msg = ex.InnerException?.Message.ToLower() ?? String.Empty;
+
+            if (msg.Contains("fk_instituicao_tipoinstituicao_tipoinstituicaoid"))
+            {
+                return StatusCode(
+                    500,
+                    new ResultViewModel<string>(
+                        $"02x0A - Exitem instituições ligadas a este tipo de instituiçõa"
+                    )
+                );
+            }
+
             return StatusCode(
                 500,
                 new ResultViewModel<dynamic>(
-                    "02x0A - Não foi possível excluir o tipo de instituição"
+                    "02x0B - Não foi possível excluir o tipo de instituição"
                 )
             );
         }
@@ -263,7 +273,7 @@ public class InstitutionTypeController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("02x0B - Erro interno no servidor")
+                new ResultViewModel<dynamic>("02x0C - Erro interno no servidor")
             );
         }
     }
@@ -285,7 +295,7 @@ public class InstitutionTypeController : ControllerBase
         );
 
         if (institutionType == null)
-            return NotFound(new ResultViewModel<string>("02x0C - Conteúdo não localizado"));
+            return NotFound(new ResultViewModel<string>("02x0D - Conteúdo não localizado"));
 
         institutionType.SetInactive();
 
@@ -310,7 +320,7 @@ public class InstitutionTypeController : ControllerBase
             return StatusCode(
                 500,
                 new ResultViewModel<dynamic>(
-                    "02x0D - Não foi possível inativar o tipo de instituição"
+                    "02x0E - Não foi possível inativar o tipo de instituição"
                 )
             );
         }
@@ -318,7 +328,7 @@ public class InstitutionTypeController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("02x10 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("02x0F - Erro interno no servidor")
             );
         }
     }
@@ -340,7 +350,7 @@ public class InstitutionTypeController : ControllerBase
         );
 
         if (institutionType == null)
-            return NotFound(new ResultViewModel<string>("02x11 - Conteúdo não localizado"));
+            return NotFound(new ResultViewModel<string>("02x10 - Conteúdo não localizado"));
 
         institutionType.SetActive();
 
@@ -365,7 +375,7 @@ public class InstitutionTypeController : ControllerBase
             return StatusCode(
                 500,
                 new ResultViewModel<dynamic>(
-                    "02x12 - Não foi possível ativar o tipo de instituição"
+                    "02x11 - Não foi possível ativar o tipo de instituição"
                 )
             );
         }
@@ -373,7 +383,7 @@ public class InstitutionTypeController : ControllerBase
         {
             return StatusCode(
                 500,
-                new ResultViewModel<dynamic>("02x13 - Erro interno no servidor")
+                new ResultViewModel<dynamic>("02x12 - Erro interno no servidor")
             );
         }
     }

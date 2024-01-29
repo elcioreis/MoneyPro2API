@@ -89,7 +89,9 @@ public class InstitutionTypeTest
     public void Ativar_Tipo_de_instituicao_deve_deixar_ativa()
     {
         var institutionType = new InstitutionType(_userId, _apelido, _descricao);
+        // Inativa primeiro
         institutionType.SetInactive();
+        // Depois reativa
         institutionType.SetActive();
         Assert.IsTrue(institutionType.IsValid && institutionType.Ativo == true);
     }
