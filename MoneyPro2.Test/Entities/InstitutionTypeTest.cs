@@ -58,7 +58,7 @@ public class InstitutionTypeTest
     [TestMethod]
     [TestCategory("InstitutionType")]
 
-    public void Tipo_de_insituicao_com_apelido_alterado_invalido_deve_falhar()
+    public void Tipo_de_instituicao_com_apelido_alterado_invalido_deve_falhar()
     {
         var institutionType = new InstitutionType(_userId, _apelido, _descricao);
         institutionType.SetApelido("");
@@ -68,7 +68,7 @@ public class InstitutionTypeTest
     [TestMethod]
     [TestCategory("InstitutionType")]
 
-    public void Tipo_de_insituicao_com_descricao_alterada_invalida_deve_falhar()
+    public void Tipo_de_instituicao_com_descricao_alterada_invalida_deve_falhar()
     {
         var institutionType = new InstitutionType(_userId, _apelido, _descricao);
         institutionType.SetDescricao("");
