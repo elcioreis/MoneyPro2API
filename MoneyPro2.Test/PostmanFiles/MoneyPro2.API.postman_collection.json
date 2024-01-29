@@ -4,7 +4,7 @@
 		"name": "MoneyPro2.API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "15533135",
-		"_collection_link": "https://warped-crater-338486.postman.co/workspace/378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-e3b28ba3-4004-414c-b5b5-8cdcbd060063?action=share&source=collection_link&creator=15533135"
+		"_collection_link": "https://warped-crater-338486.postman.co/workspace/Team-Workspace~378414f8-3418-438c-89a0-2c2fb2a21b9d/collection/15533135-e3b28ba3-4004-414c-b5b5-8cdcbd060063?action=share&source=collection_link&creator=15533135"
 	},
 	"item": [
 		{
@@ -177,6 +177,88 @@
 								"v1",
 								"institution",
 								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institution/activate/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\": \"Banco\",\r\n    \"descricao\": \"Instituições bancárias\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7278/v1/institution/activate/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institution",
+								"activate",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "v1/institution/inactivate/{id}",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{MoneyPro2.MeuToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"apelido\": \"Banco\",\r\n    \"descricao\": \"Instituições bancárias\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:7278/v1/institution/inactivate/2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "7278",
+							"path": [
+								"v1",
+								"institution",
+								"inactivate",
+								"2"
 							]
 						}
 					},
@@ -795,12 +877,6 @@
 					""
 				]
 			}
-		}
-	],
-	"variable": [
-		{
-			"key": "MoneyPro2.MeuToken",
-			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJVc2VySWQiOiIxIiwidW5pcXVlX25hbWUiOiJKb2FvIGRhIFNpbHZhIiwiZW1haWwiOiJqb2FvLnNpbHZhQGdtYWlsLmNvbSIsIm5iZiI6MTcwNjExNjEwOCwiZXhwIjoxNzA2MTU5MzA4LCJpYXQiOjE3MDYxMTYxMDh9.iGDYvemNEwaPDH1sJ73TzCMwRtlMPlebZPD6Iyw3opE"
 		}
 	]
 }
