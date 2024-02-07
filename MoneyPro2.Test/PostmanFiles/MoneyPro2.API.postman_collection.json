@@ -857,6 +857,26 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "v1/status",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7278/v1/status",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7278",
+					"path": [
+						"v1",
+						"status"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
